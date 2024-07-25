@@ -1,0 +1,17 @@
+<h1>全生産者一覧</h1>
+<ul>
+  <% @producer.each do |producer| %>
+    <li>
+      <%= producer.name %> - <%= producer.email %>
+    </li>
+  <% end %>
+</ul>
+
+<h1>全消費者一覧</h1>
+<ul>
+  <% @consumer.each do |consumer| %>
+    <li>
+      <%= consumer.name %> - <%= consumer.email %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,20 @@
+<div>
+  <h3><%= @producer.name %></h3>
+  <%= image_tag @producer.get_profile_image(100,100) %>
+  <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %> </p>
+</div>
+ 
+<!--ユーザーの投稿一覧-->
+<% @posts.each do |post| %>
+<div>
+  <%= link_to post_path(post.id) do %>
+ 　  <%= image_tag post.get_image(100,100) %>
+  <% end %>
+  <p>タイトル:<%= post.title %></p>
+  <p>本文:<%= post.body %></p>
+  <p>商品名:<%= link_to post.item.name, item_path(@item.id) %></p>
+  <p><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></p>
+</div>
+<% end %>
+
+

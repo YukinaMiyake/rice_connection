@@ -1,0 +1,54 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <%= link_to "rice_connection", root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if producer_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "NewPost", new_post_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Posts", posts_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "NewItem", new_item_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Items", items_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mypage", producer_path(current_producer.id), class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_producer_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+          <% elsif consumer_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Post", posts_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Item", items_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mypage", consumer_path(current_consumer.id), class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_consumer_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+           <% else %>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "About", about_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
