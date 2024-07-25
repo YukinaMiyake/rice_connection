@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Public::PostsController < ApplicationController
   before_action :is_matching_login_producer, only: [:edit, :update]
   
   def new 

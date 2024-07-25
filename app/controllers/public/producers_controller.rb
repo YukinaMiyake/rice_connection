@@ -1,4 +1,4 @@
-class ProducersController < ApplicationController
+class Public::ProducersController < ApplicationController
   def show
     @producer = Producer.find(params[:id])
     @posts = @producer.posts
