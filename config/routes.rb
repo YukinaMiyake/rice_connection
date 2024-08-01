@@ -7,25 +7,31 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
   end
   
-  scope module: :public do
-    devise_for :consumers, controllers: {
-      registrations: "consumers/registrations",
-      sesssions: "consumers/sessions"
-    }
-    devise_for :producers, controllers: {
-      registrations: "producers/registrations",
-      sessions: "producers/sessions"
-    }
-    root to: "homes#top"
-    get 'homes/about'=>'homes#about', as: 'about'
+
+  devise_for :consumers, controllers: {
+    registrations: "consumers/registrations",
+    sessions: "consumers/sessions"
+  }
+
+  devise_for :producers, controllers: {
+    registrations: "producers/registrations",
+    sessions: "producers/sessions"
+  }
+
+    
+  root to: "homes#top"
+  get 'homes/about'=>'homes#about', as: 'about'
   
-    resources :items
-    resources :posts do
-      resources :post_comments, only: [:create]
-    end
-    resources :producers, only: [:show, :edit]
-    resources :consumers, only: [:show, :edit]
+  resources :items
+  resources :cart_items, only: [:index, :create, :destroy] 
+  
+  resources :posts do
+    resources :post_comments, only: [:create]
   end
+  resources :post_comments, only: [:destroy]
+  
+  resources :producers, only: [:show, :edit]
+  resources :consumers, only: [:show, :edit]
   
   
   

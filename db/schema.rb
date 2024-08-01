@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_25_060051) do
+ActiveRecord::Schema.define(version: 2024_07_28_081036) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2024_07_25_060051) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "consumer_id", null: false
+    t.integer "item_id", null: false
+    t.integer "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["consumer_id"], name: "index_cart_items_on_consumer_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
+  end
+
   create_table "consumers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,6 +69,9 @@ ActiveRecord::Schema.define(version: 2024_07_25_060051) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.string "postal_code"
+    t.string "address"
+    t.string "telephone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_consumers_on_email", unique: true
@@ -78,13 +91,13 @@ ActiveRecord::Schema.define(version: 2024_07_25_060051) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer "producer_id", null: false
+    t.integer "consumer_id", null: false
     t.integer "post_id", null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["consumer_id"], name: "index_post_comments_on_consumer_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
-    t.index ["producer_id"], name: "index_post_comments_on_producer_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -113,6 +126,8 @@ ActiveRecord::Schema.define(version: 2024_07_25_060051) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_items", "consumers"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "post_comments", "consumers"
   add_foreign_key "post_comments", "posts"
-  add_foreign_key "post_comments", "producers"
 end

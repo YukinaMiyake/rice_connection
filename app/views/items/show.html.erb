@@ -1,0 +1,23 @@
+<h1>商品詳細</h1>
+<div>
+  <p><%= image_tag @item.get_image(100,100) %></p>
+  <p><%= @item.name %></p>
+  <p><%= @item.introduction %></p>
+  <p><%= @item.price %></p>
+  <p><% if @item.stock > 0  %></p>
+      <span class="badge bg-info text-white mx-3 my-3">In stock(<%= @item.stock %>)</span>
+    <% else %>
+      <span class="badge bg-danger text-white">Out of stock</span>
+    <% end %>
+    <% if @item.stock > 0 %>
+      <%= form_with model: @cart_item do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, *[1..3] %>
+        <%= f.submit "Add to Cart", class: "btn btn-sm bg-primary text-white my-3" %>
+      <% end %>
+    <% end %>
+    <% if @item.producer == current_producer %>
+  <p><%= link_to 'Edit', edit_item_path(@item.id), class: "btn btn-sm btn-success" %>
+     <%= link_to 'Destroy', item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></p>
+    <% end %>
+</div>

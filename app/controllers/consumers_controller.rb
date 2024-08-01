@@ -1,4 +1,5 @@
-class Public::ConsumersController < ApplicationController
+class ConsumersController < ApplicationController
+  
   def show
     @consumer = Consumer.find(params[:id])
   end

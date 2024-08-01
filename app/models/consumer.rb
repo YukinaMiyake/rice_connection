@@ -6,6 +6,7 @@ class Consumer < ApplicationRecord
          
   has_many :posts, dependent: :destroy
   has_many :items, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   
   has_one_attached :profile_image
@@ -24,12 +25,15 @@ end
 # Table name: consumers
 #
 #  id                     :integer          not null, primary key
+#  address                :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string
+#  postal_code            :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  telephone_number       :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #

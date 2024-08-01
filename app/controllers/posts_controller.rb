@@ -1,4 +1,4 @@
-class Public::PostsController < ApplicationController
+class PostsController < ApplicationController
   before_action :is_matching_login_producer, only: [:edit, :update]
   
   def new 
@@ -12,10 +12,9 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿に成功しました"
       redirect_to post_path(@post.id)
     else
-      flash.now[:alert] = "failed"
+      flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
-    
   end
   
   def index

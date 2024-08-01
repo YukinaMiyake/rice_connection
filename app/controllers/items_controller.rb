@@ -1,4 +1,5 @@
-class Public::ItemsController < ApplicationController
+class ItemsController < ApplicationController
+  
   def new
     @item = Item.new
   end
@@ -19,6 +20,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @cart_item = CartItem.new
   end
 
   def edit

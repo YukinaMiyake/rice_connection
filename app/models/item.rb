@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
-    
+  
+  belongs_to :producer  
   has_many :posts, dependent: :destroy
-  belongs_to :producer
+  has_many :cart_items, dependent: :destroy
   
   has_one_attached :image
   
@@ -11,6 +12,10 @@ class Item < ApplicationRecord
     else
       image.variant(resize_to_limit: [width, height]).processed
     end
+  end
+  
+  def with_tax_price
+    (price * 1.1). floor
   end
   
 end

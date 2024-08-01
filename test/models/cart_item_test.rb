@@ -1,27 +1,27 @@
 # == Schema Information
 #
-# Table name: post_comments
+# Table name: cart_items
 #
 #  id          :integer          not null, primary key
-#  content     :text             not null
+#  amount      :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  consumer_id :integer          not null
-#  post_id     :integer          not null
+#  item_id     :integer          not null
 #
 # Indexes
 #
-#  index_post_comments_on_consumer_id  (consumer_id)
-#  index_post_comments_on_post_id      (post_id)
+#  index_cart_items_on_consumer_id  (consumer_id)
+#  index_cart_items_on_item_id      (item_id)
 #
 # Foreign Keys
 #
 #  consumer_id  (consumer_id => consumers.id)
-#  post_id      (post_id => posts.id)
+#  item_id      (item_id => items.id)
 #
 require "test_helper"
 
-class PostCommentTest < ActiveSupport::TestCase
+class CartItemTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
