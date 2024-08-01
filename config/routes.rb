@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   get 'homes/about'=>'homes#about', as: 'about'
   
   resources :items
-  resources :cart_items, only: [:index, :create, :destroy] 
+  resources :cart_items, only: [:index, :create, :update, :destroy] 
+    delete :cart_items, to: 'cart_items#destroy_all'
   
   resources :posts do
     resources :post_comments, only: [:create]
