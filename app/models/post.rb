@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, length: { minimum: 1, maximum: 100 }
   
+  
   def get_image(width, height)
     unless image.attached?
       #file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -17,6 +18,11 @@ class Post < ApplicationRecord
     else
       image.variant(resize_to_limit: [width, height]).processed
     end
+  end
+  
+  def self.search
+    return Post.all unless search
+    Post.where(['content LIKE(?) OR title LIKE(?)', "%#{search}", "%#{search}"])
   end
 end
 

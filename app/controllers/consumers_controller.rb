@@ -21,6 +21,6 @@ class ConsumersController < ApplicationController
   private
   
   def consumer_params
-    params.require(:consumer).permit(:name, :profile_image)
+    params.require(:consumer).permit(:name, :profile_image, :email, :postal_code, :address, :telephone_number)
   end
 end

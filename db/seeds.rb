@@ -11,7 +11,14 @@ Admin.create!(
 )
 
 (1..5).each do |i|
-  producer = Producer.create!(name: "producer#{i}", email: "producer#{i}@test.com", password: "password")
+  producer = Producer.create!(
+    name: "producer#{i}", 
+    email: "producer#{i}@test.com", 
+    password: "password",
+    postal_code: "000000#{i}",
+    address: "xxxxxxxxxxxxxxxx",
+    telephone_number: "0#{i}0-000-0000"
+  )
   
   (1..rand(1..5)).each do |n|
     producer.items.create!(

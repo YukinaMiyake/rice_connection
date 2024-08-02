@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create]
   end
   resources :post_comments, only: [:destroy]
+  post '/search', to: 'posts#search'
+  get '/search', to: 'posts#search'
+  
+  resources :addresses
   
   resources :producers, only: [:show, :edit]
   resources :consumers, only: [:show, :edit]
