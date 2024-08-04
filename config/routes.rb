@@ -33,7 +33,10 @@ Rails.application.routes.draw do
   post '/search', to: 'posts#search'
   get '/search', to: 'posts#search'
   
-  resources :addresses
+  resources :addresses 
+  resources :orders do
+    post '/confirm', to: 'orders#confirm'
+  end
   
   resources :producers, only: [:show, :edit]
   resources :consumers, only: [:show, :edit]

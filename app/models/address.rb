@@ -1,5 +1,9 @@
 class Address < ApplicationRecord
   belongs_to :consumer
+
+  def address_display
+  '〒' + postal_code + ' ' + address + ' ' + name
+  end
 end
 
 # == Schema Information
