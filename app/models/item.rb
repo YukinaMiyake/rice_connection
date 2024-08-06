@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to :producer  
   has_many :posts, dependent: :destroy
   has_many :cart_items, dependent: :destroy
+  has_many :order_details, dependent: :destroy
   
   has_one_attached :image
   

@@ -1,2 +1,39 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h3>注文履歴詳細</h3>
+<h4>注文情報</h4>
+<table>
+  <thead>
+  <tr>
+    <th>注文日</th>
+    <th>配送先</th>
+    <th>支払方法</th>
+    <th>ステータス</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @order_details.each do |order_detail| %>
+    <tr>
+      <td><%= order_detail.cteated_at %></td>
+      <td><%= order_detail.address %></td>
+      <td><%= order_detail.payment_method %></td>
+      <td><%= order_detail.status %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>請求内容</h4>
+<table>
+  <thead>
+  <tr>
+    <th>商品合計</th>
+    <th>送料</th>
+    <th>ご請求金額</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order. %></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+

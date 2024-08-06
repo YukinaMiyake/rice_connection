@@ -35,7 +35,10 @@ Rails.application.routes.draw do
   
   resources :addresses 
   resources :orders do
-    post '/confirm', to: 'orders#confirm'
+    member do
+      post 'confirm'
+      get 'thanks'
+    end
   end
   
   resources :producers, only: [:show, :edit]
