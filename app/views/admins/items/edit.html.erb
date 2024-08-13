@@ -1,0 +1,5 @@
+<h3>商品情報編集</h3>
+<%= render 'items/item_form', item: @item, submit: "edit" %>
+
+<%= link_to 'Show', admins_item_path(@item.id) %>
+<%= link_to 'Back', admins_items_path %>

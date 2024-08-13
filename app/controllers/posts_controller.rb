@@ -18,7 +18,6 @@ class PostsController < ApplicationController
   end
   
   def index
-    @producer = current_producer
     @posts = Post.all
   end
   
@@ -27,6 +26,15 @@ class PostsController < ApplicationController
     @producer = @post.producer
     @item = Item.find(params[:id])
     @post_comment = PostComment.new
+  end
+  
+  def search
+    if params[:keyword].present?
+      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%" )
+      @keyword = params[:keyword]
+    else
+      @posts = Post.all
+    end
   end
   
   def edit

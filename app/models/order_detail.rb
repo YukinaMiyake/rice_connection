@@ -1,6 +1,18 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
+  
+  def subtotal 
+    item.with_tax_price * amount
+  end
+  
+  def self.total
+    self.all&.map { |o| o.subtotal }&.sum || 0
+  end
+
+  def self.item_count
+    self.all&.map { |o| o.amount }&.sum || 0
+  end
 end
 
 # == Schema Information

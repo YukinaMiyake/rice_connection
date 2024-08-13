@@ -2,17 +2,21 @@
 <h1>投稿詳細</h1>
 <table class="table">
   <tbody>
-    <td><%= image_tag @post.get_image(50, 50) %></td>
-    <td><%= image_tag @post.producer.get_profile_image(100,100) %><br />
-      <p><%= link_to @post.producer.name, producer_path(@producer.id) %></p></td>
-    <td><%= @post.title %></td>
-    <td><%= @post.body %></td>
-    <td><%= link_to @post.item.name, item_path(@item.id) %></td>
-    <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-      <% if @post.producer == current_producer %>
-    <td><%= link_to 'Edit', edit_post_path(@post.id), class: "btn btn-sm btn-success" %></td> 
-    <td><%= link_to 'Destroy', post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
-      <% end %>
+    <tr>
+      <td><%= image_tag @post.get_image(50, 50) %></td>
+    </tr>
+    <tr>
+      <td><%= image_tag @post.producer.get_profile_image(100,100) %><br />
+        <p><%= link_to @post.producer.name, producer_path(@producer.id) %></p></td>
+      <td><%= @post.title %></td>
+      <td><%= @post.body %></td>
+      <td><%= link_to @post.item.name, item_path(@item.id) %></td>
+      <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+        <% if @post.producer == current_producer %>
+      <td><%= link_to 'Edit', edit_post_path(@post.id), class: "btn btn-sm btn-success" %></td> 
+      <td><%= link_to 'Destroy', post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
+        <% end %>
+    </tr>
   </tbody>
 </table>
 

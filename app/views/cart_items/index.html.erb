@@ -34,13 +34,15 @@
   </table>
   <table class="table table-bordered">
     <tbody>
-      <% @cart_items.each do |cart_item| %>
-      <tr><td class="table-secondary">合計金額</td>
-    　  　<td><%= @total_price += cart_item.subtotal %></td></tr>
-      <% end %>
+      <tr>
+        <th class="table-secondary">合計金額</th>
+    　   <td><%= @cart_items.total %></td>
+    　</tr>
     </tbody>
   </table>
   <%= link_to "カートを空にする", cart_items_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 <% end %>
  </div>
 </div>
+
+<%= link_to "order", new_order_path %>

@@ -39,7 +39,17 @@
           <li class="nav-item">
             <%= link_to "Log out", destroy_consumer_session_path, method: :delete, class: 'nav-link' %>
           </li>
-           <% else %>
+          <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Post", admins_posts_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Item", admins_items_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+          </li>
+          <% else %>
           <li class="nav-item">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>

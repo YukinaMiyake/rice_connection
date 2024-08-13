@@ -3,8 +3,15 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: "admin/sessions"
   } 
-  namespace :admin do
+  get 'admins/homes/top' =>'admins/homes#top', as: 'admins_top'
+  namespace :admins do
     get 'dashboards', to: 'dashboards#index'
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:index]
+    end
+    resources :items, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :producers
   end
   
 
@@ -27,19 +34,23 @@ Rails.application.routes.draw do
     delete :cart_items, to: 'cart_items#destroy_all'
   
   resources :posts do
-    resources :post_comments, only: [:create]
-  end
-  resources :post_comments, only: [:destroy]
-  post '/search', to: 'posts#search'
-  get '/search', to: 'posts#search'
-  
-  resources :addresses 
-  resources :orders do
-    member do
-      post 'confirm'
-      get 'thanks'
+    resources :post_comments, only: [:create, :destroy]
+    collection do
+      get 'search'
     end
   end
+  
+  resources :addresses 
+  resources :orders, only: [:new, :create, :index, :show] do
+    member do
+      get 'thanks'
+    end
+    collection do
+      post 'confirm'
+      get 'confirm' => redirect('/cart_items')
+    end
+  end
+  
   
   resources :producers, only: [:show, :edit]
   resources :consumers, only: [:show, :edit]

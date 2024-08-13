@@ -12,9 +12,10 @@
     <%= current_consumer.address %><br />
     <%= current_consumer.name %>
 
-    
-  <p><%= f.radio_button :select_address, 1 %>登録済みの住所から選択</p>
-  <p><%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></p>
+  <% if current_consumer.addresses.any? %>
+    <p><%= f.radio_button :select_address, 1 %>登録済みの住所から選択</p>
+    <p><%= f.select :address_id, options_from_collection_for_select(current_consumer.addresses, :id, :address_display) %></p>
+  <% end %>
     
   <p><%= f.radio_button :select_address, 2 %>新しいお届け先</p>
   <table>

@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   
   enum payment_method: { credit_card: 0, transfer: 1 }
+  enum status: { 入金待ち: 0, 入金確認: 1, 発送準備中: 2, 発送済み: 3 }
   
 
 end
@@ -17,7 +18,7 @@ end
 #  payment_method :integer          not null
 #  postal_code    :string           not null
 #  shipping_cost  :integer          not null
-#  status         :integer          default(0), not null
+#  status         :integer          default("入金待ち"), not null
 #  total_payment  :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

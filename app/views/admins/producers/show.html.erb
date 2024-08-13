@@ -1,0 +1,38 @@
+<h3><%= @producer.name %>さんの会員情報</h3>
+<table>
+  <tr>
+    <th>会員ID</th>
+    <td><%= @producer.id %></td>
+  </tr>
+  <tr>
+    <th>氏名</th>
+    <td><%= @producer.name %></td>
+  </tr>
+  <tr>
+    <th>郵便番号</th>
+    <td><%= @producer.postal_code %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @producer.address %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @producer.telephone_number %></td>
+  </tr>
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @producer.email %></td>
+  </tr>
+  <tr>
+    <th>会員ステータス</th>
+    <td><% if @producer.is_active == true %>
+    　　    有効
+    　　<% else %>
+    　　    退会済み
+    　　<% end %>
+    </td>
+  </tr>
+</table>
+<%= link_to "編集", edit_admins_path(@producer.id), class: "btn btn-success" %>
+<%= link_to "注文履歴一覧を見る", admins_producers_path, class: "btn btn-primary" %>

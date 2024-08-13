@@ -18,6 +18,10 @@ class Producer < ApplicationRecord
       profile_image.variant(resize_to_limit: [width, height]).processed
     end
   end
+  
+  def name
+    first_name + last_name
+  end
     
 end
 
@@ -29,7 +33,9 @@ end
 #  address                :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  name                   :string
+#  first_name             :string
+#  is_active              :boolean          default(TRUE), not null
+#  last_name              :string
 #  postal_code            :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

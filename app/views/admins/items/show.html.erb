@@ -1,0 +1,12 @@
+<h3>商品詳細</h3>
+<div>
+  <p><%= image_tag @item.get_image(100,100) %></p>
+  <p><%= @item.name %></p>
+  <p><%= @item.introduction %></p>
+  <p><%= @item.price %></p>
+  <p><% if @item.stock > 0  %></p>
+      <span class="badge bg-info text-white mx-3 my-3">In stock(<%= @item.stock %>)</span>
+    <% else %>
+      <span class="badge bg-danger text-white">Out of stock</span>
+    <% end %>
+  <p><%= link_to 'Edit', edit_admins_item_path(@item.id), class: "btn btn-sm btn-success" %>

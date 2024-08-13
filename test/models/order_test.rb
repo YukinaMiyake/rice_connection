@@ -8,7 +8,7 @@
 #  payment_method :integer          not null
 #  postal_code    :string           not null
 #  shipping_cost  :integer          not null
-#  status         :integer          default(0), not null
+#  status         :integer          default("入金待ち"), not null
 #  total_payment  :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

@@ -5,14 +5,15 @@
     <%= form_with model: @consumer do |f| %>
       <div class="form-group">
         <%= f.label :"名前" %>
-        <%= f.text_field :name, autofocus: true, class: "form-control name" %>
+        <span>姓</span><%= f.text_field :first_name, autofocus: true, class: "form-control name" %>
+        <span>名</span><%= f.text_field :last_name, autofocus: true, class: "form-control name" %>
       </div>
       <div class="form-group">
         <%= f.label :"プロフィール画像" %>
         <%= f.file_field :profile_image, class: "form-control-file consumer_image", accept: "image/*" %>
       </div>
       <div class="form-group">
-        <%= f.label :email %>
+        <%= f.label :"メールアドレス" %>
         <%= f.text_field :email, class: "form-control emai" %>
       </div>
       <div class="form-group">

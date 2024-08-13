@@ -60,3 +60,5 @@ gem 'devise'
 gem 'annotate'
 
 gem 'enum_help'
+
+gem 'kaminari'
