@@ -1,20 +1,24 @@
 <%= form_with model: item do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
-  
-  <h4>商品画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  
-  <h4>商品名</h4>
-  <%= f.text_field :name, class: "form-control" %>
-  
-  <h4>商品説明文</h4>
-  <%= f.text_area :introduction, class: "form-control" %>
-  
-  <h4>商品価格</h4>
-  <%= f.text_field :price, class: "form-control" %>
-  
-  <h4>在庫数</h4>
-  <%= f.text_field :stock, class: "form-control" %>
-  
-  <%= f.submit submit, class: "btn btn-primary btn-sm" %>
+  <div class="mb-2">
+    <%= f.label :image, "商品画像" %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :name, "商品名" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :introduction, "商品説明文" %>
+    <%= f.text_area :introduction, class: "form-control" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :price, "商品価格" %>
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :stock, "在庫数" %>
+    <%= f.text_field :stock, class: "form-control" %>
+  </div>
+  <%= f.submit submit, class: "btn btn-primary btn-block mt-3" %>
 <% end %>

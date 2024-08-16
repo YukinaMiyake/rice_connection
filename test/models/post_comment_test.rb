@@ -14,11 +14,6 @@
 #  index_post_comments_on_consumer_id  (consumer_id)
 #  index_post_comments_on_post_id      (post_id)
 #
-# Foreign Keys
-#
-#  consumer_id  (consumer_id => consumers.id)
-#  post_id      (post_id => posts.id)
-#
 require "test_helper"
 
 class PostCommentTest < ActiveSupport::TestCase

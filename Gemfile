@@ -62,3 +62,5 @@ gem 'annotate'
 gem 'enum_help'
 
 gem 'kaminari'
+
+gem 'faker-japanese'

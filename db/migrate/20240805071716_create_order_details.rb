@@ -5,6 +5,7 @@ class CreateOrderDetails < ActiveRecord::Migration[6.1]
       t.references :item, null: false, foreigh_key: true
       t.integer :price, null: false
       t.integer :amount, null: false
+      t.integer :status, default: 0, null: false
       t.timestamps
     end
   end

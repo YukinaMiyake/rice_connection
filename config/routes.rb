@@ -51,6 +51,10 @@ Rails.application.routes.draw do
     end
   end
   
+  namespace :producer do
+    resources :order_details, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show]
+  end
   
   resources :producers, only: [:show, :edit]
   resources :consumers, only: [:show, :edit]

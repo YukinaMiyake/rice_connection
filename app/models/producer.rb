@@ -9,6 +9,10 @@ class Producer < ApplicationRecord
   
   has_one_attached :profile_image
   
+  def order_details
+    OrderDetail.includes(:item).where('items.producer_id': self.id)
+  end
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       #file_path = Rails.root.join('app/assets/image/no_image.jpg')
@@ -20,9 +24,8 @@ class Producer < ApplicationRecord
   end
   
   def name
-    first_name + last_name
+    "#{last_name}　#{first_name}"
   end
-    
 end
 
 # == Schema Information

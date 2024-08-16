@@ -78,7 +78,8 @@ ActiveRecord::Schema.define(version: 2024_08_05_071716) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
     t.string "postal_code"
     t.string "address"
     t.string "telephone_number"
@@ -105,6 +106,7 @@ ActiveRecord::Schema.define(version: 2024_08_05_071716) do
     t.integer "item_id", null: false
     t.integer "price", null: false
     t.integer "amount", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_order_details_on_item_id"
@@ -166,8 +168,4 @@ ActiveRecord::Schema.define(version: 2024_08_05_071716) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "cart_items", "consumers"
-  add_foreign_key "cart_items", "items"
-  add_foreign_key "post_comments", "consumers"
-  add_foreign_key "post_comments", "posts"
 end

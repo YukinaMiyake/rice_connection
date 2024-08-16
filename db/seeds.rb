@@ -12,7 +12,8 @@ Admin.create!(
 
 (1..5).each do |i|
   producer = Producer.create!(
-    name: "producer#{i}", 
+    first_name: Faker::Japanese::Name.first_name,
+    last_name: Faker::Japanese::Name.last_name,
     email: "producer#{i}@test.com", 
     password: "password",
     postal_code: "000000#{i}",
@@ -43,7 +44,8 @@ posts = Post.all
 
 (1..3).each do |i|
   consumer = Consumer.create!(
-    name: "consumer#{i}",
+    first_name: Faker::Japanese::Name.first_name,
+    last_name: Faker::Japanese::Name.last_name,
     email: "consumer#{i}@test.com",
     password: "password",
     postal_code: "000000#{i}",

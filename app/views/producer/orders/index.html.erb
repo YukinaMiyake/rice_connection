@@ -1,0 +1,29 @@
+<h4>注文情報</h4>
+<table class="table table-borderd">
+  <thead>
+  <tr>
+    <th>注文日</th>
+    <th>注文者</th>
+    <th>配送先</th>
+    <th>ステータス</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= order.name %></td>
+        <td><%= order.address %></td>
+        <td><%= order.payment_method_i18n %></td>
+        <td>
+          <% if order.order_details.includes(:item).where('items.producer_id': current_producer.id)&.pluck(:status)&.uniq == ['発送済み'] %>
+            <%= link_to "発送済み", producer_order_path(order), class: "btn btn-outline-secondary" %>
+          <% else %>
+            <%= link_to "未発送商品を見る", producer_order_path(order), class: "btn btn-warning" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

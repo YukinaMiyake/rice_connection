@@ -1,0 +1,33 @@
+<%= form_with url: producer_order_details_path, method: :get do |f| %>
+  <%= f.select :status, OrderDetail.statuses.keys, { include_blank: "全て", selected: params[:status] }, {} %>
+  <%= f.submit %>
+<% end %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>注文日</th>
+      <th>注文者名</th>
+      <th>商品名</th>
+      <th>商品合計</th>
+      <th>発注ステータス</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_details.each do |order_detail| %>
+    <tr>
+      <td><%= link_to order_detail.id, producer_order_detail_path(order_detail) %></td>
+      <td><%= order_detail.order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= order_detail.order.name %></td>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.subtotal %></td>
+      <td><%= order_detail.status %></td>
+      <td><%= link_to "詳細", producer_order_detail_path(order_detail), class: "btn btn-outline-primary" %></td>
+      <td><%= link_to "注文全体を見る", producer_order_path(order_detail.order), class: "btn btn-outline-success" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

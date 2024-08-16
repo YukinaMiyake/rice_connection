@@ -5,6 +5,7 @@
 #  id         :integer          not null, primary key
 #  amount     :integer          not null
 #  price      :integer          not null
+#  status     :integer          default("未着手"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  item_id    :integer          not null

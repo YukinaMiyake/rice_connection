@@ -6,7 +6,8 @@
 #  address                :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  name                   :string
+#  first_name             :string
+#  last_name              :string
 #  postal_code            :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

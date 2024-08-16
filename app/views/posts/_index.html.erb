@@ -1,6 +1,6 @@
 <table class="table table-hover table-inverse">
   <thead>
-    <tr>
+    <tr style="background-color: #f5f5f5">
       <th></th>
       <th>画像</th>
       <th>タイトル</th>
@@ -12,10 +12,10 @@
   <tbody>
     <% posts.each do |post| %>
     <tr>
-      <td><%= image_tag post.producer.get_profile_image(100,100) %></td>
-      <td><%= image_tag post.get_image(100, 100) %></td>
+      <td><%= image_tag post.producer.get_profile_image(50,50), size: "50x50" %></td>
+      <td><%= image_tag post.get_image(50, 50), size: "50x50" %></td>
       <td><%= link_to post.title, post_path(post.id) %></td>
-      <td><%= post.body %></td>
+      <td><%= post.body.truncate(20) %></td>
       <td><%= post.item.name %></td>
       <td><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></td>
     </tr>

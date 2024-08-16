@@ -3,9 +3,18 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   
   enum payment_method: { credit_card: 0, transfer: 1 }
-  enum status: { 入金待ち: 0, 入金確認: 1, 発送準備中: 2, 発送済み: 3 }
+  enum status: { 入金待ち: 0, 入金確認: 1 }
   
+  scope :active_orders, -> { where.not(status: "入金待ち") }
+  
+  #after_find :detail_check
+  
+  # def detail_check
+  #   details = self.order_details.pluck(:status)
+  #   if details.size == ["発送済み"]
 
+  #   end
+  # end
 end
 
 # == Schema Information

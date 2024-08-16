@@ -1,8 +1,9 @@
 <div>
   <h3><%= @producer.name %></h3>
   <%= image_tag @producer.get_profile_image(100,100) %>
-  <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %> </p>
-</div>
+  <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %></p>
+  <%=link_to "注文一覧", producer_order_details_path, class: "btn btn-outline-secondary" %>
+ </div>
  
 <!--ユーザーの投稿一覧-->
 <% @posts.each do |post| %>

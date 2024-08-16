@@ -14,11 +14,6 @@
 #  index_cart_items_on_consumer_id  (consumer_id)
 #  index_cart_items_on_item_id      (item_id)
 #
-# Foreign Keys
-#
-#  consumer_id  (consumer_id => consumers.id)
-#  item_id      (item_id => items.id)
-#
 require "test_helper"
 
 class CartItemTest < ActiveSupport::TestCase
