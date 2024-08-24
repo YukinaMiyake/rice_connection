@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class Consumer::OrdersController < ApplicationController
   def new
     @order = Order.new
     @addresses = Address.all
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
     end
     
     CartItem.destroy_all
-    redirect_to thanks_order_path(@order)
+    redirect_to thanks_consumer_order_path(@order)
   end
   
   def thanks

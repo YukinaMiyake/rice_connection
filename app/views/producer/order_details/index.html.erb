@@ -1,3 +1,7 @@
+<div class="row">
+  <h2 class="mb-4">発送一覧</h2>
+</div>
+
 <%= form_with url: producer_order_details_path, method: :get do |f| %>
   <%= f.select :status, OrderDetail.statuses.keys, { include_blank: "全て", selected: params[:status] }, {} %>
   <%= f.submit %>

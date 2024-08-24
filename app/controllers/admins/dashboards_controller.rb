@@ -1,4 +1,4 @@
-class Admin::DashboardsController < ApplicationController
+class Admins::DashboardsController < ApplicationController
   layout 'admin'
   before_action :authenticate_admin!
   

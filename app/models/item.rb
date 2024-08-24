@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   
   belongs_to :producer  
+  belongs_to :genre
   has_many :posts, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
@@ -22,6 +23,11 @@ class Item < ApplicationRecord
   def self.shipping_cost
     800
   end
+  
+  def self.search
+    return Item.all unless search
+    Item.where(['title LIKE(?)', "#{search}"])
+  end
 end
 
 # == Schema Information
@@ -36,9 +42,15 @@ end
 #  stock        :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  genre_id     :integer          not null
 #  producer_id  :integer          not null
 #
 # Indexes
 #
+#  index_items_on_genre_id     (genre_id)
 #  index_items_on_producer_id  (producer_id)
+#
+# Foreign Keys
+#
+#  genre_id  (genre_id => genres.id)
 #

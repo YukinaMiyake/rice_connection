@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_producer!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
   def new
     @item = Item.new
@@ -15,7 +17,22 @@ class ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    if current_producer
+      @items = current_producer.items
+    else
+      @items = Item.all
+    end
+    if params[:keyword].present?
+      @items = @items.where('name LIKE ?', "%#{params[:keyword]}%").or(
+               @items.where('introduction LIKE ?', "%#{params[:keyword]}%"))
+    end
+    @items = @items.where(genre_id: params[:genre_id]) if params[:genre_id].present?
+    if params[:order].present?
+      col, order = params[:order].split("__").map(&:to_sym)
+      @items = @items.order(col => order)
+    else
+      @items = @items.order(created_at: :desc)
+    end
   end
 
   def show
@@ -46,5 +63,10 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :stock)
+  end
+  
+  def correct_user
+    @item = current_producer.items.find_by_id(params[:id])
+    redirect_to root_path unless @item
   end
 end

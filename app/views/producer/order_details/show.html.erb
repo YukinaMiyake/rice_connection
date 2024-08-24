@@ -1,39 +1,41 @@
-<h4>発送情報</h4>
-
-<table class="table table-borderd">
-  <tbody>
-    <tr>
-      <th>商品</th>
-      <td><%= @order_detail.item.name %></td>
-    </tr>
-    <tr>
-      <th>単価(税込)</th>
-      <td><%= @order_detail.item.with_tax_price %></td>
-    </tr>
-    <tr>
-      <th>数量</th>
-      <td><%= @order_detail.amount %></td>
-    </tr>
-    <tr>
-      <th>小計</th>
-      <td><%= @order_detail.subtotal %></td>
-    </tr>
-    <tr>
-      <th>発送ステタス</th>
-      <td>
-        <% if @order_detail.status != "発送済み" %>
-          <%= form_with model: @order_detail, url: producer_order_detail_path(@order_detail) do |f| %>
-            <%= f.select :status, OrderDetail.statuses.keys %>
-            <%= f.submit %>
+<div class="row">
+  <h2 class="mt-2 mb-4">発送情報</h2>
+</div>
+<div class="row mb-3">
+  <table class="table table-borderd">
+    <tbody>
+      <tr>
+        <th style="background-color: #f5f5f5">商品</th>
+        <td><%= @order_detail.item.name %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">単価(税込)</th>
+        <td><%= @order_detail.item.with_tax_price %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">数量</th>
+        <td><%= @order_detail.amount %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">小計</th>
+        <td><%= @order_detail.subtotal %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">発送ステータス</th>
+        <td>
+          <% if @order_detail.status != "発送済み" %>
+            <%= form_with model: @order_detail, url: producer_order_detail_path(@order_detail) do |f| %>
+              <%= f.select :status, OrderDetail.statuses.keys %>
+              <%= f.submit %>
+            <% end %>
+          <% else %>
+            発送済み
           <% end %>
-        <% else %>
-          発送済み
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <%= link_to "発送一覧へ戻る", producer_order_details_path, class: "btn btn-secondary" %>
 <%= link_to "この注文全体を見る", producer_order_path(@order_detail.order), class: "btn btn-primary" %> 
 

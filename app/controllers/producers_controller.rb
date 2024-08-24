@@ -3,7 +3,6 @@ class ProducersController < ApplicationController
   def show
     @producer = Producer.find(params[:id])
     @posts = @producer.posts
-    @item = Item.find(params[:id])
   end
 
   def edit

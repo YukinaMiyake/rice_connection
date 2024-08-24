@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_consumer!, only: :create
   
   def index
     @cart_items = current_consumer.cart_items.all

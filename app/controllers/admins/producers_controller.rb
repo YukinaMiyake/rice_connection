@@ -17,7 +17,7 @@ class Admins::ProducersController < ApplicationController
   end
   
   def update
-    @producer = Producer.fins(params[:id])
+    @producer = Producer.find(params[:id])
     if @producer.update(producer_params)
       admins_producer_path(@producer)
     else

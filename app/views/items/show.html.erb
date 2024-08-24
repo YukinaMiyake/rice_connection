@@ -1,19 +1,41 @@
-<h1>商品詳細</h1>
-<div>
-  <p><%= image_tag @item.get_image(100,100) %></p>
-  <p><%= @item.name %></p>
-  <p><%= @item.introduction %></p>
-  <p><%= @item.price %></p>
-  <p><% if @item.stock > 0  %></p>
+<div class="container">
+  <h1>商品詳細</h1>
+    <div class="row">
+      <p><%= image_tag @item.get_image(300,200), size: "300x200" %></p>
+    </div>
+    <div class="row">
+      <table>
+        <tr>
+          <th class="col-lg-5">商品名</th>
+          <td class="col-lg-6 offset-lg-1"><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th class="col-g-5">ジャンル</th>
+          <td class="col-lg-6 offset-lg-1"><%= @item.genre.name %></td>
+        </tr>
+        <tr>
+          <th class="col-g-5">商品説明文</th>
+          <td class="col-lg-6 offset-lg-1"><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <th class="col-g-5">商品価格(税抜)</th>
+          <td class="col-lg-6 offset-lg-1"><%= @item.price %></td>
+        </tr>
+      </table>
+    </div>
+    <% if @item.stock > 0  %>
       <span class="badge bg-info text-white mx-3 my-3">In stock(<%= @item.stock %>)</span>
     <% else %>
       <span class="badge bg-danger text-white">Out of stock</span>
     <% end %>
-    <% if @item.stock > 0 %>
-      <%= form_with model: @cart_item do |f| %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.select :amount, *[1..3] %>
-        <%= f.submit "Add to Cart", class: "btn btn-sm bg-primary text-white my-3" %>
+    <% unless producer_signed_in? %>
+      <% if @item.stock > 0 %>
+        <%= form_with model: @cart_item do |f| %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.select :amount, *[1..3] %>
+        
+          <%= f.submit "Add to Cart", class: "btn btn-sm bg-primary text-white my-3" %>
+        <% end %>
       <% end %>
     <% end %>
     <% if @item.producer == current_producer %>

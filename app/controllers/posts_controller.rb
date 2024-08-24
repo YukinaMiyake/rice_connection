@@ -32,15 +32,6 @@ class PostsController < ApplicationController
     @post_comment = PostComment.new
   end
   
-  def search
-    if params[:keyword].present?
-      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%" )
-      @keyword = params[:keyword]
-    else
-      @posts = Post.all
-    end
-  end
-  
   def edit
     @post = Post.find(params[:id])
   end

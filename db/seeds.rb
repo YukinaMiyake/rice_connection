@@ -10,6 +10,22 @@ Admin.create!(
   password: 'password'
 )
 
+genre_names = %w(
+        北海道
+        青森県
+        岩手県
+        秋田県
+        宮城県
+        福島県
+        山形県
+        福島県
+        茨城県
+        栃木県
+        群馬県
+        埼玉県
+      )
+genres = genre_names.map { |name| Genre.create!(name: name) }
+
 (1..5).each do |i|
   producer = Producer.create!(
     first_name: Faker::Japanese::Name.first_name,
@@ -23,17 +39,17 @@ Admin.create!(
   
   (1..rand(1..5)).each do |n|
     producer.items.create!(
-        name: "item#{i}-#{n}",
-        introduction: "xxxxx" * rand(3..5),
-        price: [2000, 3000, 4000].sample,
-        stock: rand(1..10)
-      )
+      name: "item#{i}-#{n}",
+      introduction: "xxxxx" * rand(3..5),
+      price: [2000, 3000, 4000].sample,
+      stock: rand(1..10),
+      genre_id: genres.sample.id
+    )
   end
   
-  items = producer.items
   (1..rand(1..3)).each do |n|
     producer.posts.create!(
-        item_id: items.sample.id,
+        item_id: producer.items.sample.id,
         title: "post#{i}-#{n}",
         body: "xxxxx" * rand(5..10)
       )

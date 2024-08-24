@@ -10,11 +10,17 @@
 #  stock        :integer          default(0), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  genre_id     :integer          not null
 #  producer_id  :integer          not null
 #
 # Indexes
 #
+#  index_items_on_genre_id     (genre_id)
 #  index_items_on_producer_id  (producer_id)
+#
+# Foreign Keys
+#
+#  genre_id  (genre_id => genres.id)
 #
 require "test_helper"
 

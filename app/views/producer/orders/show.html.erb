@@ -1,72 +1,83 @@
-<h4>注文情報</h4>
-<table class="table table-borderd">
-  <thead>
-  <tr>
-    <th>注文日</th>
-    <th>注文者</th>
-    <th>配送先</th>
-    <th>支払方法</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-      <td><%= @order.name %></td>
-      <td><%= @order.address %></td>
-      <td><%= @order.payment_method_i18n %></td>
-    </tr>
-  </tbody>
-</table>
-<h4>請求内容</h4>
-<table class="table table-borderd">
-  <thead>
-  <tr>
-    <th>商品合計</th>
-    <th>送料</th>
-    <th>ご請求金額</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @order_details.total %></td>
-      <td><%= shipping_cost = Item.shipping_cost * @order_details.item_count %></td>
-      <td><%= @order_details.total + shipping_cost %></td>
-    </tr>
-  </tbody>
-</table>
-<h4>注文内容</h4>
-<table class="table table-borderd">
-  <thead>
-    <tr>
-      <th>商品</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>ステタス</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order_details.each do |order_detail| %>
-    <tr>
-      <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.item.with_tax_price %></td>
-      <td><%= order_detail.amount %></td>
-      <td><%= order_detail.subtotal %></td>
-      <td>
-        <% if order_detail.status != "発送済み" %>
-          <%= form_with model: order_detail, url: producer_order_detail_path(order_detail) do |f| %>
-            <%= f.select :status, OrderDetail.statuses.keys %>
-            <%= f.submit %>
+<div class="row">
+  <h2 class="mb-3">注文詳細履歴</h2>
+</div>
+<div class="row">
+  <div class="col-lg-7">
+    <h4 class="mt-2 mb-3">注文情報</h4>
+    <table class="table table-borderd">
+      <tr>
+        <th style="background-color: #f5f5f5">注文日</th>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">注文者</th>
+        <td><%= @order.name %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">配送先</th>
+        <td><%= @order.address %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">支払方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-lg-5">
+    <h4 class="mt-2 mb-3">請求内容</h4>
+    <table class="table table-borderd">
+      <tr>
+        <th style="background-color: #f5f5f5">商品合計</th>
+        <td><%= @order_details.total %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">送料</th>
+        <td><%= shipping_cost = Item.shipping_cost * @order_details.item_count %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">ご請求金額</th>
+        <td><%= @order_details.total + shipping_cost %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+  <h4>注文内容</h4>
+  <table class="table table-borderd">
+    <thead>
+      <tr style="background-color: #f5f5f5">
+        <th>商品</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>ステータス</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_details.each do |order_detail| %>
+      <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.item.with_tax_price %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.subtotal %></td>
+        <td>
+          <% if order_detail.status != "発送済み" %>
+            <%= form_with model: order_detail, url: producer_order_detail_path(order_detail) do |f| %>
+              <%= f.select :status, OrderDetail.statuses.keys %>
+              <%= f.submit %>
+            <% end %>
+          <% else %>
+            発送済み
           <% end %>
-        <% else %>
-          発送済み
-        <% end %>
-      </td>
-      <td><%= link_to "詳細", producer_order_detail_path(order_detail), class: "btn btn-outline-primary" %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+        </td>
+        <td><%= link_to "詳細", producer_order_detail_path(order_detail), class: "btn btn-outline-primary" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
 
 <%= link_to "注文一覧", producer_orders_path, class: "btn btn-secondary" %>

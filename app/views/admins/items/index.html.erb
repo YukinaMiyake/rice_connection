@@ -1,21 +1,24 @@
-<h3>商品一覧</h3>
+<h1>商品一覧</h1>
+<%= render 'items/search_form', url: admins_items_path %>
+
 <table class="table table-bordered">
   <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品画像</th>
-      <th>商品名</th>
-      <th>商品価格(税抜)</th>
+    <tr style="background-color: #f5f5f5">
+      <th width="10%">商品ID</th>
+      <th width="20%">商品画像</th>
+      <th width="50%">商品名</th>
+      <th width="20%">商品価格(税抜)</th>
     </tr>
   </thead>
   <tbody>
     <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= image_tag item.get_image(100,100) %></td>
+      <td><%= image_tag item.get_image(50,50), size: "100x100" %></td>
       <td><%= link_to item.name, admins_item_path(item) %></td>
       <td><%= item.price %></td>
     </tr>
     <% end %>
   </tbody>
 </table>
+</div>

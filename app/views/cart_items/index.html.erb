@@ -1,15 +1,13 @@
 <div class="row">
-  <div class="col-md-10">
-  <h3>ショッピングカート</h3>
-
-
+  <h2 class="mt-3">ショッピングカート</h2>
+</div>
 <% if @cart_items.count == 0 %>
   <h4 class="my-5 ml-5">No Item</h4>
   <%= link_to 'Find item', items_path, class: "btn btn-secondary" %>
 <% else %>
   <table class="table">
     <thead>
-      <tr>
+      <tr style="background-color: #f5f5f5">
         <th>商品名</th>
         <th>単価(税込)</th>
         <th>数量</th>
@@ -20,7 +18,7 @@
     <tbody>
       <% @cart_items.each do |cart_item| %>
       <tr>
-        <td><%= image_tag cart_item.item.get_image(10,10) %><%= cart_item.item.name %></td>
+        <td><%= image_tag cart_item.item.get_image(300,200), size: "300x200" %><%= cart_item.item.name %></td>
         <td><%= cart_item.item.with_tax_price %></td>
         <td><%= form_with model: cart_item, method: :patch do |f| %>
               <%= f.select :amount, options_for_select(1..3, cart_item.amount) %>
@@ -41,8 +39,7 @@
     </tbody>
   </table>
   <%= link_to "カートを空にする", cart_items_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-  <%= link_to "order", new_order_path, class: "btn btn-success ml-3" %>
+  <%= link_to "注文する", new_consumer_order_path, class: "btn btn-success ml-3" %>
 <% end %>
- </div>
-</div>
+
 

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     end
     resources :items, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
-    resources :producers
+    resources :producers, only: [:index, :show, :edit]
+    resources :consumers, only: [:index, :show, :edit]
   end
   
 
@@ -35,13 +36,17 @@ Rails.application.routes.draw do
   
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
-    collection do
-      get 'search'
-    end
   end
   
   resources :addresses 
-  resources :orders, only: [:new, :create, :index, :show] do
+  
+  namespace :producer do
+    resources :order_details, only: [:index, :show, :update]
+    resources :orders, only: [:index, :show]
+  end
+  
+  namespace :consumer do
+    resources :orders, only: [:new, :create, :index, :show] do
     member do
       get 'thanks'
     end
@@ -49,11 +54,7 @@ Rails.application.routes.draw do
       post 'confirm'
       get 'confirm' => redirect('/cart_items')
     end
-  end
-  
-  namespace :producer do
-    resources :order_details, only: [:index, :show, :update]
-    resources :orders, only: [:index, :show]
+    end
   end
   
   resources :producers, only: [:show, :edit]
