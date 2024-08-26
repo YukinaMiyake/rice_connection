@@ -1,12 +1,5 @@
 class Admins::ProducersController < ApplicationController
-  def index
-    if params[:is_active]
-      producer = Producer.where(is_valid: true)
-      @producers = producer.page(params[:page])
-    else
-      @producers = Producer.page(params[:page])
-    end
-  end
+  before_action :authenticate_admin!
   
   def show
     @producer = Producer.find(params[:id])

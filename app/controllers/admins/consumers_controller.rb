@@ -1,13 +1,5 @@
 class Admins::ConsumersController < ApplicationController
-  def index 
-    if params[:is_active]
-      consumer = Consumer.where(is_valid: true)
-      @consumers = consumer.page(params[:page])
-    else
-      @consumers =Consumer.page(params[:page])
-    end
-  end
-  
+
   def show
     @consumer = Consumer.find(params[:id])
   end

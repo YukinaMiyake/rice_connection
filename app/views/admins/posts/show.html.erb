@@ -1,30 +1,43 @@
 <div class="row">
-<h1>投稿詳細</h1>
-<table class="table">
-  <tbody>
-    <tr>
-      <td><%= image_tag @post.get_image(50, 50) %></td>
-    </tr>
-    <tr>
-      <td><%= image_tag @post.producer.get_profile_image(100,100) %><br />
-        <p><%= link_to @post.producer.name, producer_path(@producer.id) %></p></td>
-      <td><%= @post.title %></td>
-      <td><%= @post.body %></td>
-      <td><%= link_to @post.item.name, admins_item_path(@item.id) %></td>
-      <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-      <td><%= link_to 'Destroy', post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
-    </tr>
-  </tbody>
-</table>
-
-<div>
-  <%= link_to admins_post_post_comments_path(@post.id) do  %>
-  <p>コメント件数:<%= @post.post_comments.count %></p>
-  <% end %>
-  <% @post.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.consumer.get_profile_image(100,100) %></p>
-    <%= post_comment.consumer.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.content %>
-      <%= link_to "削除", post_comment_path(post_comment.id), method: :delete %>
-  <% end %>
+  <h1 class="mb-3">投稿詳細</h1>
 </div>
+<div class="row">
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><%= image_tag @post.get_image(300, 200), size: "300x200" %></td>
+      </tr>
+      <tr>
+        <td width="20%"><%= image_tag @post.producer.get_profile_image(100,100) %><br />
+          <p><%= link_to @post.producer.name, admins_producer_path(@producer.id) %></p></td>
+        <td width="20%"><%= @post.title %></td>
+        <td width="30%"><%= @post.body %></td>
+        <td width="10%"><%= link_to @post.item.name, admins_item_path(@item.id) %></td>
+        <td width="10%"><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+        <td width="10%"><%= link_to 'Destroy', post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+  <p class="font-weight-bold">コメント件数:<%= @post.post_comments.count %>件</p>
+</div>
+<% @post.post_comments.each do |post_comment| %>
+  <div class="row">
+    <div class="col-md-3">
+      <p><%= image_tag post_comment.consumer.get_profile_image(100,100) %></p>
+      <p><%= post_comment.consumer.name %></p>
+    </div>
+    <div class="col-md-1" %>
+      <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+    </div>
+    <div class="col-md-3">
+      <p><%= post_comment.content %></p>
+    </div>
+    <div class="col-md-1">
+        <%= link_to "Destroy", admins_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-outline-danger" %>
+    </div>
+  </div>
+  <% end %>
+    

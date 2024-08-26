@@ -1,7 +1,17 @@
-<h1>投稿一覧</h1>
+<div class="row">
+  <h1 class="mb-3">投稿一覧</h1>
+</div>
+<div class="row">
+  <div class="mb-3">
+    <%= form_with url: admins_posts_path, method: :get do |f| %>
+      <%= f.search_field :keyword, value: params[:keyword] %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+</div>
 <table class="table table-hover table-inverse">
   <thead>
-    <tr>
+    <tr style="background-color: #f5f5f5">
       <th></th>
       <th>画像</th>
       <th>タイトル</th>
@@ -13,13 +23,11 @@
   <tbody>
     <% @posts.each do |post| %>
     <tr>
-      <td><%= image_tag post.producer.get_profile_image(100,100) %></td>
-      <td><%= image_tag post.get_image(100, 100) %></td>
+      <td><%= image_tag post.producer.get_profile_image(80,80), size: "80x80" %></td>
+      <td><%= image_tag post.get_image(80, 80), size: "80x80" %></td>
       <td><%= link_to post.title, admins_post_path(post.id) %></td>
-      <td><%= post.body %></td>
+      <td><%= post.body.truncate(20) %></td>
       <td><%= post.item.name %></td>
       <td><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></td>
     </tr>
     <% end %>
-  </tbody>
-</table>

@@ -3,7 +3,12 @@ class Admins::DashboardsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @producers = Producer.all
-    @consumers = Consumer.all
+    if params[:is_active]
+    @producers = Producer.where(is_active :true)
+    @consumers = Consumer.where(is_active :true)
+    else
+      @producers = Producer.all
+      @consumers = Consumer.all
+    end
   end
 end

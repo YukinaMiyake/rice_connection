@@ -2,8 +2,11 @@
 <html>
 <head>
   <title>Admin - RiceConnection</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  
+   <script src="https://kit.fontawesome.com/b1057b10db.js" crossorigin="anonymous"></script>
   <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
@@ -18,22 +21,22 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
-          <li class="nav-item">
+            <li class="nav-item">
               <%= link_to "Posts", admins_posts_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
               <%= link_to "Items", admins_items_path, class: 'nav-link' %>
             </li>
             <li class="nav-item">
+              <%= link_to "Users", admins_dashboards_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Orders", admins_orders_path, class: 'nav-link' %>
+            </li>
+            <li class="nav-item">
               <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
             </li>
-            <% else %>
-            <li class="nav-item">
-              <%= link_to "Posts", posts_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Items", items_path, class: "nav-link" %>
-            </li>
+             <% else %>
             <li class="nav-item">
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
@@ -46,6 +49,9 @@
       </div>
     </nav>
   </header>
+  
+  <main class="container mt-4">
+   <%= render 'layouts/flash_messages' %>
   <%= yield %>
 </body>
 </html>

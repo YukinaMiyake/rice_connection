@@ -1,4 +1,7 @@
 class Admins::OrdersController < ApplicationController
+  layout 'admin'
+  before_action :authenticate_admin!
+  
   def index
     @orders = Order.all
     
@@ -11,8 +14,10 @@ class Admins::OrdersController < ApplicationController
   
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_to admins_order_path(@order)
+    if @order.update(order_params)
+      flash[:notice] = "更新に成功しました"
+      redirect_to admins_order_path(@order)
+    end
   end
   
   private

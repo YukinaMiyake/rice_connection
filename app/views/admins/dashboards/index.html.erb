@@ -1,17 +1,51 @@
-<h1>全生産者一覧</h1>
-<ul>
-  <% @producers.each do |producer| %>
-    <li>
-      <%= producer.name %> - <%= producer.email %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <h1 class="mt-2 mb-5">ユーザー一覧</h1>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <h3>生産者</h3>
+    <table class="table table-bordered">
+      <tr style="background-color: #f5f5f5">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+      <% @producers.each do |producer| %>
+      <tr>
+        <td><%= producer.id %></td>
+        <td><%= link_to producer.name, admins_producer_path(producer.id) %></td>
+        <td><%= producer.email %></td>
+        <td><% if producer.is_active %>
+              有効
+            <% else %>
+              退会済み
+            <% end %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 
-<h1>全消費者一覧</h1>
-<ul>
-  <% @consumers.each do |consumer| %>
-    <li>
-      <%= consumer.name %> - <%= consumer.email %>
-    </li>
-  <% end %>
-</ul>
+  <div class="col-lg-6">
+    <h3>消費者</h3>
+    <table class="table table-bordered">
+      <tr style="background-color: #f5f5f5">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+      <% @consumers.each do |consumer| %>
+      <tr>
+        <td><%= consumer.id %></td>
+        <td><%= link_to consumer.name, admins_consumer_path(consumer.id) %></td>
+        <td><%= consumer.email %></td>
+        <td><% if consumer.is_active %>
+              有効
+            <% else %>
+              退会済み
+            <% end %></td>
+      <% end %>
+      </tr>
+  </div>
+</div>

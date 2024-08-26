@@ -7,6 +7,7 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
+#  is_active              :boolean          default(TRUE), not null
 #  last_name              :string
 #  postal_code            :string
 #  remember_created_at    :datetime
