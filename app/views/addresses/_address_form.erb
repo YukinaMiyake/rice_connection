@@ -1,4 +1,6 @@
 <%= form_with model: address do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  
   <div class="form-group">
   <%= f.label :"郵便番号" %>
   <%=f.text_field :postal_code, class: "form-control mb-2" %>

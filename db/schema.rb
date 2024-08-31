@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2024_08_16_152547) do
     t.integer "consumer_id", null: false
     t.integer "item_id", null: false
     t.integer "amount"
+    t.integer "weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["consumer_id"], name: "index_cart_items_on_consumer_id"

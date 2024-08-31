@@ -2,10 +2,17 @@ class Order < ApplicationRecord
   belongs_to :consumer
   has_many :order_details, dependent: :destroy
   
+  validates :payment_method, presence: true
+  validates :address, presence: true
+  
   enum payment_method: { credit_card: 0, transfer: 1 }
   enum status: { 入金待ち: 0, 入金確認: 1 }
   
   scope :active_orders, -> { where.not(status: "入金待ち") }
+  
+  def address_display
+    '〒' + postal_code + ' ' + address + ' ' + name
+  end
   
   #after_find :detail_check
   

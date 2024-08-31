@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-  before_action :authenticate_consumer!, only: :create
+  before_action :authenticate_consumer!
   
   def index
     @cart_items = current_consumer.cart_items.all
@@ -7,13 +7,13 @@ class CartItemsController < ApplicationController
   end
   
   def create
-    @cart_item = current_consumer.cart_items.new(cart_item_params)
+    @cart_item = current_consumer.cart_items.build(cart_item_params)
     #もし元々カート内に同じ商品がある場合、変更・保存
     if current_consumer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       #元々カート内にあるもの[:item_id]
       #今追加した　params[:cart_item][:item_id]
-      cart_item = current_consumer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-      cart_item.amount += params[:cart_item][:amount].to_i
+      @cart_item = current_consumer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+      @cart_item.amount += params[:cart_item][:amount].to_i
       @cart_item.save
       redirect_to cart_items_path
     #もしカート内に同じ商品がない場合、通常の保存処理
@@ -51,6 +51,6 @@ class CartItemsController < ApplicationController
   
   private
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :amount)
+    params.require(:cart_item).permit(:item_id, :amount, :weight)
   end
 end

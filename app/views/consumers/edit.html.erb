@@ -31,9 +31,11 @@
         <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
       </div>
       
-      <%= f.submit "Update", class: "btn btn-secondary btn-block" %>
+      <%= f.submit "登録内容を保存する", class: "btn btn-info btn-block mb-3" %>
       
     <% end %>
+    
+    <%= link_to "退会する", quit_consumer_path, class: "btn btn-outline-danger btn-block" %>
   </div>
 </div>
  

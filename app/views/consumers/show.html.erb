@@ -1,7 +1,8 @@
-<div>
-  <h3><%= @consumer.name %></h3>
-  <%= image_tag @consumer.get_profile_image(100,100) %>
-  <p><%= link_to "プロフィール編集", edit_consumer_path(@consumer.id) %></p>
-  <%= link_to "ショッピングカート", cart_items_path, class: "btn btn-info" %>
-  <%= link_to "注文履歴", consumer_orders_path, class: "btn btn-outline-secondary" %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'consumers/user_info', consumer: @consumer %>
+  </div>
+  <div class="col-md-9">
+    
+  </div>
 </div>

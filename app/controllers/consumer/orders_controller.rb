@@ -2,10 +2,12 @@ class Consumer::OrdersController < ApplicationController
   def new
     @order = Order.new
     @addresses = Address.all
+    @consumer = current_consumer
   end
 
   def confirm
     @order = Order.new(order_params)
+    @consumer = current_consumer
     if params[:order]["select_address"] == "0"
       @order.postal_code = current_consumer.postal_code
       @order.address = current_consumer.address
@@ -28,7 +30,7 @@ class Consumer::OrdersController < ApplicationController
     @order = current_consumer.orders.build(order_params)
     @order.save!
     @cart_items = current_consumer.cart_items.all
-    
+
     @cart_items.each do |cart_item| 
       @order_details = OrderDetail.new
       @order_details.order_id = @order.id

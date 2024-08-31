@@ -1,45 +1,78 @@
-<div class="container">
-  <h1>商品詳細</h1>
+<h1>商品詳細</h1>
+  <div class="row">
+    <div class="col-md-5">
+      <p><%= image_tag @item.get_image(300,200), size: "400x300" %></p>
+    </div>
+    <div class="col-md-6">
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <p class="font-weight-bold">商品名</p>
+        </div>
+        <div class="col-md-7">
+          <%= @item.name %>
+        </div>
+      </div>
+      <% unless producer_signed_in? %>
+      <div class="row mt-2">
+        <div class="col-md-3">
+          <p class="font-weight-bold">生産者名</p>
+        </div>
+        <div class="col-md-7">
+          <%= @item.producer.name %>
+        </div>
+      </div>
+      <% end %>
+      <div class="row mt-2">
+        <div class="col-md-3">
+          <p class="font-weight-bold">ジャンル</p>
+        </div>
+        <div class="col-md-7">
+          <%= @item.genre.name %>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-3">
+          <p class="font-weight-bold">商品説明文</p></p>
+        </div>
+        <div class="col-md-7">
+          <%= @item.introduction %>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-3">
+          <p class="font-weight-bold">商品価格(税抜)</p></p>
+        </div>
+        <div class="col-md-7">
+          <%= @item.price %>
+        </div>
+      </div>
+    
     <div class="row">
-      <p><%= image_tag @item.get_image(300,200), size: "300x200" %></p>
+      <div class="col-md-4">
+        <% if @item.stock > 0  %>
+          <h5 class="bg-info text-white text-center">In stock(<%= @item.stock %>)</h5>
+        <% else %>
+          <span class="badge bg-danger text-white mx-3 my-3">Out of stock</span>
+        <% end %>
+     </div>
     </div>
     <div class="row">
-      <table>
-        <tr>
-          <th class="col-lg-5">商品名</th>
-          <td class="col-lg-6 offset-lg-1"><%= @item.name %></td>
-        </tr>
-        <tr>
-          <th class="col-g-5">ジャンル</th>
-          <td class="col-lg-6 offset-lg-1"><%= @item.genre.name %></td>
-        </tr>
-        <tr>
-          <th class="col-g-5">商品説明文</th>
-          <td class="col-lg-6 offset-lg-1"><%= @item.introduction %></td>
-        </tr>
-        <tr>
-          <th class="col-g-5">商品価格(税抜)</th>
-          <td class="col-lg-6 offset-lg-1"><%= @item.price %></td>
-        </tr>
-      </table>
-    </div>
-    <% if @item.stock > 0  %>
-      <span class="badge bg-info text-white mx-3 my-3">In stock(<%= @item.stock %>)</span>
-    <% else %>
-      <span class="badge bg-danger text-white">Out of stock</span>
-    <% end %>
+      <div class="col-md-5 mt-4 mb-2">
     <% unless producer_signed_in? %>
       <% if @item.stock > 0 %>
         <%= form_with model: @cart_item do |f| %>
-          <%= f.hidden_field :item_id, :value => @item.id %>
-          <%= f.select :amount, *[1..3] %>
-        
-          <%= f.submit "Add to Cart", class: "btn btn-sm bg-primary text-white my-3" %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, *[1..5], { include_blank: "--個数を選択--" }, { class: "form-control" } %>
+          <%= f.select :weight, [["5kg",5],["10kg",10],["30kg",30]], { include_blank: "--重さを選択--" }, { class: "form-control" } %>
+      </div>
+    </div>
+          <%= f.submit "カートへ入れる", class: "btn btn-primary ml-3 my-3" %>
         <% end %>
       <% end %>
     <% end %>
     <% if @item.producer == current_producer %>
-  <p><%= link_to 'Edit', edit_item_path(@item.id), class: "btn btn-sm btn-success" %>
-     <%= link_to 'Destroy', item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></p>
+  <p><%= link_to '編集', edit_item_path(@item.id), class: "btn btn-sm btn-success" %>
+     <%= link_to '削除', item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></p>
     <% end %>
-</div>
+    </div>
+  </div>

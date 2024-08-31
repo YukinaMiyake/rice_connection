@@ -5,16 +5,18 @@ class AddressesController < ApplicationController
   end
   
   def create
-    @address = Address.new(address_params)
+    @address = current_consumer.addresses.build(address_params)
     if @address.save
       flash[:notice] = "配送先登録に成功しました"
       redirect_to addresses_path
     else
-      render 'new'
+      @addresses = Address.all
+      render 'index'
     end
   end
   
   def index
+    @address = Address.new
     @addresses = Address.all
   end
 

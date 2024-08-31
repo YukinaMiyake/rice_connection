@@ -7,6 +7,7 @@
       <th>購入者</th>
       <th>注文個数</th>
       <th>注文ステータス</th>
+      <th>発送ステータス</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,13 @@
           <%= amount %>
       </td>
       <td><%= order.status %></td>
+      <td>
+        <% if order.order_details.where.not(status: "発送済み").any? %>
+          <span style="color:red;">未発送あり</span>
+        <% else %>
+          <span>発送済み</span>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

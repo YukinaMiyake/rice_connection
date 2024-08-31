@@ -1,9 +1,23 @@
-<div class="row">
-  <h1 class="mt-2 mb-5">ユーザー一覧</h1>
-</div>
+<h1 class="mt-2 mb-5">ユーザー一覧</h1>
+
 <div class="row">
   <div class="col-lg-6">
     <h3>生産者</h3>
+    <div class="mb-3">
+    <%= form_with url: admins_dashboards_path, method: :get do |f| %>
+      <div class="row">
+        <div class="col-md-7">
+          <%= f.search_field :producer_keyword, value: params[:producer_keyword], placeholder: "--キーワードで検索--", class: "form-control" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.select :producer_status, [["有効", :true],["退会済み", :false]], { selected: params[:producer_status] }, { class: "form-control" } %>
+        </div>
+        <div class="col-md-2">
+          <%= f.submit "検索", class: "btn btn-outline-secondary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+    </div>
     <table class="table table-bordered">
       <tr style="background-color: #f5f5f5">
         <th>会員ID</th>
@@ -28,6 +42,21 @@
 
   <div class="col-lg-6">
     <h3>消費者</h3>
+    <div class="mb-3">
+    <%= form_with url: admins_dashboards_path, method: :get do |f| %>
+      <div class="row">
+        <div class="col-md-7">
+          <%= f.search_field :consumer_keyword, value: params[:consumer_keyword], placeholder: "--キーワードで検索--", class: "form-control" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.select :consumer_status, [["有効", :true],["退会済み", :false]], { selected: params[:consumer_status] }, { class: "form-control" } %>
+        </div>
+        <div class="col-md-2">
+          <%= f.submit "検索", class: "btn btn-outline-secondary btn-block" %>
+        </div>
+      </div>
+    <% end %>
+    </div>
     <table class="table table-bordered">
       <tr style="background-color: #f5f5f5">
         <th>会員ID</th>

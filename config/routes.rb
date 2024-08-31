@@ -5,14 +5,16 @@ Rails.application.routes.draw do
   } 
   get 'admins/homes/top' =>'admins/homes#top', as: 'admins_top'
   namespace :admins do
+    root to: "dashboards#index"
     get 'dashboards', to: 'dashboards#index'
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy]
     end
     resources :items, only: [:index, :show, :edit, :update]
     resources :orders, only: [:index, :show, :update]
-    resources :producers, only: [:index, :show, :edit]
-    resources :consumers, only: [:index, :show, :edit]
+    resources :producers, only: [:index, :show, :edit, :update]
+    resources :consumers, only: [:index, :show, :edit, :update]
+    resources :genres, only: [:new, :create, :index, :edit, :update, :destroy]
   end
   
 
@@ -58,7 +60,12 @@ Rails.application.routes.draw do
   end
   
   resources :producers, only: [:show, :edit]
-  resources :consumers, only: [:show, :edit]
+  resources :consumers, only: [:show, :edit, :update] do
+    member do
+      get 'quit'
+      patch 'withdraw'
+    end
+  end
   
   
   

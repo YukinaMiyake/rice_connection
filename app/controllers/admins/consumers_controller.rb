@@ -1,5 +1,7 @@
 class Admins::ConsumersController < ApplicationController
-
+  layout 'admin'
+  before_action :authenticate_admin!
+  
   def show
     @consumer = Consumer.find(params[:id])
   end
@@ -16,5 +18,10 @@ class Admins::ConsumersController < ApplicationController
       flash[:notice]="項目を正しく記入してください"
       render 'edit'
     end
+  end
+  
+  private
+  def consumer_params
+    params.require(:producer).permit(:first_name, :last_name, :email, :postal_code, :address, :telephone_number, :email, :is_active)
   end
 end

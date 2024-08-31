@@ -9,7 +9,22 @@ class Consumers::SessionsController < Devise::SessionsController
     about_path
   end
   
-  protected
+  private
+  
+  def reject_consumers
+    @consumers = Consumers.find_by(email: params[:consumers][:email])
+    if @consumer#上の行でconsumerが見つかった場合
+      if @consumers.valid_password?(params[:consumers][:password]) && (@consumers.is_active == false)
+        #@consumerで取得したアカウントのパスワードがログイン画面の入力されたパスワードと一致しているか(valid_password)、会員が退会済みか↑
+        flash[:notice] = "退会済みです。再度登録してください"
+        redirect_to new_consumer_session_path
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+    else
+      flash[:notice] = "該当するユーザーが見つかりません"#if @consumerでアカウントが見つからなかった場合
+    end
+  end
   
 
   #def configure_permitted_parameters
