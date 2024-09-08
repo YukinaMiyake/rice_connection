@@ -4,6 +4,7 @@ class Admins::ProducersController < ApplicationController
   
   def show
     @producer = Producer.find(params[:id])
+    @order_details = @producer.order_details
   end
   
   def edit

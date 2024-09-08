@@ -6,7 +6,7 @@ class Consumer::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(order_params)
+    @order = current_consumer.orders.build(order_params)
     @consumer = current_consumer
     if params[:order]["select_address"] == "0"
       @order.postal_code = current_consumer.postal_code
@@ -18,12 +18,21 @@ class Consumer::OrdersController < ApplicationController
       @order.address = @address.address
       @order.name = @address.name
     elsif params[:order]["select_address"] == "2"
-      @order.consumer_id = current_consumer.id
+      #@order.consumer_id = current_consumer.id
     end
       @cart_items = current_consumer.cart_items
       @order_new = Order.new
+    if @order.valid?
       render :confirm    
-      return
+    else
+      @addresses = Address.all
+      if params[:order]["select_address"] != "2"
+        @order.postal_code = nil
+        @order.address = nil
+        @order.name = nil
+      end
+      render :new
+    end
   end
   
   def create
@@ -37,6 +46,7 @@ class Consumer::OrdersController < ApplicationController
       @order_details.item_id = cart_item.item.id
       @order_details.price = cart_item.item.price
       @order_details.amount = cart_item.amount
+      #@order_details.weight = cart_item.weight
       @order_details.save!
     end
     

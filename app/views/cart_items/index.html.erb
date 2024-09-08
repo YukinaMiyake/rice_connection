@@ -25,7 +25,7 @@
             <td><%= cart_item.item.with_tax_price %></td>
             <td><%= form_with model: cart_item, method: :patch do |f| %>
                   <%= f.select :amount, options_for_select(1..5, cart_item.amount) %>
-                  <%= f.select :weight, [["5kg",5],["10kg",10],["30kg",30]] %>
+                  
                   <%= f.submit "変更" %>
                 <% end %></td>
             <td><%= cart_item.subtotal %></td>

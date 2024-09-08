@@ -7,7 +7,7 @@
   <%= csp_meta_tag %>
   
    <script src="https://kit.fontawesome.com/b1057b10db.js" crossorigin="anonymous"></script>
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
@@ -41,10 +41,10 @@
             </li>
              <% else %>
             <li class="nav-item">
-              <%= link_to "Home", root_path, class: "nav-link" %>
+              <%= link_to "ホーム", root_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "About", about_path, class: 'nav-link' %>
+              <%= link_to "アバウト", about_path, class: 'nav-link' %>
             </li>
           <% end %>
           </ul>
@@ -54,7 +54,9 @@
   </header>
   
   <main class="container mt-4">
-   <%= render 'layouts/flash_messages' %>
-  <%= yield %>
+    <%= render 'layouts/flash_messages' %>
+    <%= yield %>
+  </main>
+    <%= render 'layouts/footer' %>
 </body>
 </html>

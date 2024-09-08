@@ -22,7 +22,7 @@
           <td><%= image_tag cart_item.item.get_image(200,100), size: "200x100" %></td>
           <td><%= cart_item.item.name %></td>
           <td><%= cart_item.item.with_tax_price %></td>
-          <td><%= cart_item.amount %>個</br><%= cart_item.weight %>kg</td>
+          <td><%= cart_item.amount %>個</td>
           <td><%= cart_item.subtotal %></td>
         </tr>
         <% end %>

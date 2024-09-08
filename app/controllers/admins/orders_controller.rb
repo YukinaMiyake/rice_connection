@@ -4,7 +4,10 @@ class Admins::OrdersController < ApplicationController
   
   def index
     @orders = Order.all
-    
+    #@consumer = @orders.map { |order| order.consumer }
+    if params[:keyword].present?
+      @orders = @orders.where('name LIKE ?', "%#{params[:keyword]}%")
+    end
   end
 
   def show

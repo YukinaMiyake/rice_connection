@@ -21,7 +21,6 @@ end
 #
 #  id          :integer          not null, primary key
 #  amount      :integer
-#  weight      :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  consumer_id :integer          not null

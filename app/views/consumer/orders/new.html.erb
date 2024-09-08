@@ -5,52 +5,53 @@
   <div class="col-md-8 offset-md-1">
     <h2 class="mb-4">注文情報入力</h2>
     <%= form_with model: @order, url: '/consumer/orders/confirm', local: true do |f| %>
-    <div class="row">
-      <div class-"col-md-4 offset-md-1">
-        <h4>支払い方法</h4>
-        <div class="ml-4 mb-3">
-          <%= f.radio_button :payment_method, "credit_card" %>
-          <%= f.label :payment_method, "クレジットカード" %></br>
-          <%= f.radio_button :payment_method, "transfer" %>
-          <%= f.label :payment_method, "銀行振込" %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="row">
+        <div class-"col-md-4 offset-md-1">
+          <h4>支払い方法</h4>
+          <div class="ml-4 mb-3">
+            <%= f.radio_button :payment_method, "credit_card" %>
+            <%= f.label :payment_method, "クレジットカード" %></br>
+            <%= f.radio_button :payment_method, "transfer" %>
+            <%= f.label :payment_method, "銀行振込" %>
+          </div>
         </div>
-      </div>
-      <div class="col-md-6 offset-md-1">
-        <h4>お届け先</h4>
-        <div class="ml-4 mb-3">
-          <%= f.radio_button :select_address, 0 %>ご自身の住所
-            <p>〒<%= current_consumer.postal_code %>
-              <%= current_consumer.address %><br />
-              <%= current_consumer.name %>様</p>
-        </div>
-        <div class="ml-4 mb-3">
-          <% if current_consumer.addresses.any? %>
-            <p><%= f.radio_button :select_address, 1 %>登録済みの住所から選択</p>
-            <p><%= f.select :address_id, options_from_collection_for_select(current_consumer.addresses, :id, :address_display) %></p>
-          <% end %>
-        </div>
-        <div class="ml-4 mb-3">
-          <p><%= f.radio_button :select_address, 2 %>新しいお届け先</p>
-          <table>
-            <tbody>
-              <tr>
-                <td>郵便番号</td>
-                <td><%= f.text_field :postal_code, class: "form-control" %></td>
-              </tr>
-              <tr>
-                <td>住所</td>
-                <td><%= f.text_area :address, class: "form-control" %></td>
-              </tr>
-              <tr>
-                <td>宛名</td>
-                <td><%= f.text_field :name, class: "form-control" %></td>
-              </tr>
-            </tbody>
-          </table> 
-        </div>
-        
-      <%= f.submit "確認画面に進む", class: "btn btn-info mt-3 ml-4"%>
-    <% end %>
+        <div class="col-md-6 offset-md-1">
+          <h4>お届け先</h4>
+          <div class="ml-4 mb-3">
+            <%= f.radio_button :select_address, 0, checked: params.dig(:order, :select_address) == "0" %>ご自身の住所
+              <p>〒<%= current_consumer.postal_code %>
+                <%= current_consumer.address %><br />
+                <%= current_consumer.name %>様</p>
+          </div>
+          <div class="ml-4 mb-3">
+            <% if current_consumer.addresses.any? %>
+              <p><%= f.radio_button :select_address, 1, checked: params.dig(:order, :select_address) == "1" %>登録済みの住所から選択</p>
+              <p><%= f.select :address_id, options_from_collection_for_select(current_consumer.addresses, :id, :address_display) %></p>
+            <% end %>
+          </div>
+          <div class="ml-4 mb-3">
+            <p><%= f.radio_button :select_address, 2, checked: params.dig(:order, :select_address) == "2" %>新しいお届け先</p>
+            <table>
+              <tbody>
+                <tr>
+                  <td>郵便番号</td>
+                  <td><%= f.text_field :postal_code, class: "form-control" %></td>
+                </tr>
+                <tr>
+                  <td>住所</td>
+                  <td><%= f.text_area :address, class: "form-control" %></td>
+                </tr>
+                <tr>
+                  <td>宛名</td>
+                  <td><%= f.text_field :name, class: "form-control" %></td>
+                </tr>
+              </tbody>
+            </table> 
+          </div>
+          
+        <%= f.submit "確認画面に進む", class: "btn btn-info mt-3 ml-4"%>
+      <% end %>
       <%= link_to "ショッピングカートに戻る", cart_items_path, class: "btn btn-outline-secondary mt-3 ml-4" %>
      </div>
     </div>

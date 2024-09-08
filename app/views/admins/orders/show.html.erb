@@ -38,7 +38,9 @@
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.item.producer.name %></td>
       <td><%= order_detail.item.with_tax_price %></td>
-      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.amount %>個
+      
+      </td>
       <td><%= order_detail.subtotal %></td>
       <td><%= order_detail.status %></td>
     </tr>
@@ -58,4 +60,4 @@
     <p><%= @order.order_details.total + @order.shipping_cost %></p>
   </div>
 </div>
-<%= link_to "注文一覧", admins_orders_path, class: "btn btn-secondary mt-3" %>
+<%= link_to "注文一覧へ戻る", admins_orders_path, class: "btn btn-outline-secondary mt-3" %>
