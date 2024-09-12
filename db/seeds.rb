@@ -26,54 +26,56 @@ genre_names = %w(
       )
 genres = genre_names.map { |name| Genre.create!(name: name) }
 
-(1..5).each do |i|
-  producer = Producer.create!(
-    first_name: Faker::Japanese::Name.first_name,
-    last_name: Faker::Japanese::Name.last_name,
-    email: "producer#{i}@test.com", 
-    password: "password",
-    postal_code: "000000#{i}",
-    address: "xxxxxxxxxxxxxxxx",
-    telephone_number: "0#{i}0-000-0000"
-  )
-  
-  (1..rand(1..5)).each do |n|
-    producer.items.create!(
-      name: "item#{i}-#{n}",
-      introduction: "xxxxx" * rand(3..5),
-      price: [2000, 3000, 4000].sample,
-      stock: rand(1..10),
-      genre_id: genres.sample.id
+if Rails.env.development?
+  (1..5).each do |i|
+    producer = Producer.create!(
+      first_name: Faker::Japanese::Name.first_name,
+      last_name: Faker::Japanese::Name.last_name,
+      email: "producer#{i}@test.com", 
+      password: "password",
+      postal_code: "000000#{i}",
+      address: "xxxxxxxxxxxxxxxx",
+      telephone_number: "0#{i}0-000-0000"
     )
+    
+    (1..rand(1..5)).each do |n|
+      producer.items.create!(
+        name: "item#{i}-#{n}",
+        introduction: "xxxxx" * rand(3..5),
+        price: [2000, 3000, 4000].sample,
+        stock: rand(1..10),
+        genre_id: genres.sample.id
+      )
+    end
+    
+    (1..rand(1..3)).each do |n|
+      producer.posts.create!(
+          item_id: producer.items.sample.id,
+          title: "post#{i}-#{n}",
+          body: "xxxxx" * rand(5..10)
+        )
+    end
   end
   
-  (1..rand(1..3)).each do |n|
-    producer.posts.create!(
-        item_id: producer.items.sample.id,
-        title: "post#{i}-#{n}",
-        body: "xxxxx" * rand(5..10)
-      )
-  end
-end
-
-posts = Post.all
-
-(1..3).each do |i|
-  consumer = Consumer.create!(
-    first_name: Faker::Japanese::Name.first_name,
-    last_name: Faker::Japanese::Name.last_name,
-    email: "consumer#{i}@test.com",
-    password: "password",
-    postal_code: "000000#{i}",
-    address: "xxxxxxxxxxxxxxxx",
-    telephone_number: "0#{i}0-000-0000"
-  )
+  posts = Post.all
   
-  (1..rand(1..3)).each do |n|
-    consumer.post_comments.create!(
-        post_id: posts.sample.id,
-        content: "xxxxx" * rand(3..5)
-      )
+  (1..3).each do |i|
+    consumer = Consumer.create!(
+      first_name: Faker::Japanese::Name.first_name,
+      last_name: Faker::Japanese::Name.last_name,
+      email: "consumer#{i}@test.com",
+      password: "password",
+      postal_code: "000000#{i}",
+      address: "xxxxxxxxxxxxxxxx",
+      telephone_number: "0#{i}0-000-0000"
+    )
+    
+    (1..rand(1..3)).each do |n|
+      consumer.post_comments.create!(
+          post_id: posts.sample.id,
+          content: "xxxxx" * rand(3..5)
+        )
+    end
   end
 end
 
