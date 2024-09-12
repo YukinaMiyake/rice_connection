@@ -6,7 +6,9 @@ class Admins::OrdersController < ApplicationController
     @orders = Order.all
     #@consumer = @orders.map { |order| order.consumer }
     if params[:keyword].present?
-      @orders = @orders.where('name LIKE ?', "%#{params[:keyword]}%")
+      @orders = @orders.where('name LIKE ?', "%#{params[:keyword]}%").or(
+                @orders.where(consumer_id: params[:keyword]))
+      
     end
   end
 
