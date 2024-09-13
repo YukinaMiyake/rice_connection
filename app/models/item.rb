@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   
-  belongs_to :producer  
-  belongs_to :genre
+  belongs_to :producer, optional: true
+  belongs_to :genre, optional: true
   has_many :posts, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
@@ -49,8 +49,4 @@ end
 #
 #  index_items_on_genre_id     (genre_id)
 #  index_items_on_producer_id  (producer_id)
-#
-# Foreign Keys
-#
-#  genre_id  (genre_id => genres.id)
 #

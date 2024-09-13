@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2024_08_16_152547) do
 
   create_table "items", force: :cascade do |t|
     t.integer "producer_id", null: false
+    t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "introduction"
     t.integer "price", default: 0, null: false
@@ -105,7 +106,6 @@ ActiveRecord::Schema.define(version: 2024_08_16_152547) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "genre_id", null: false
     t.index ["genre_id"], name: "index_items_on_genre_id"
     t.index ["producer_id"], name: "index_items_on_producer_id"
   end
@@ -177,5 +177,4 @@ ActiveRecord::Schema.define(version: 2024_08_16_152547) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "items", "genres"
 end

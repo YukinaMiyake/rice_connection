@@ -3,11 +3,12 @@ class ItemsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def new
-    @item = Item.new
+      @item = Item.new
   end
   
   def create
     @item = Item.new(item_params)
+    @item.producer_id = current_producer.id
     if @item.save
       flash[:notice] = "商品登録に成功しました"
       redirect_to item_path(@item.id)
@@ -62,7 +63,7 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :stock)
+    params.require(:item).permit(:name, :genre_id, :introduction, :price, :stock)
   end
   
   def correct_user
