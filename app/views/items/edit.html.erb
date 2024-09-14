@@ -3,9 +3,9 @@
   
   <h3>商品情報編集</h3>
 
-  <%= render 'item_form', item: @item, submit: "edit" %>
+  <%= render 'item_form', item: @item, submit: "更新" %>
 
-  <%= link_to 'Show', item_path(@item.id) %>
-  <%= link_to 'Back', items_path %>
+  <%= link_to '詳細画面へ戻る', item_path(@item.id), class: "btn btn-outline-primary" %>
+  <%= link_to '一覧へ戻る', items_path, class: "btn btn-outline-secondary" %>
   </div>
  </div>
