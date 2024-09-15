@@ -50,3 +50,7 @@ end
 #  index_items_on_genre_id     (genre_id)
 #  index_items_on_producer_id  (producer_id)
 #
+# Foreign Keys
+#
+#  genre_id  (genre_id => genres.id)
+#
