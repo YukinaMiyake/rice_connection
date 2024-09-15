@@ -14,7 +14,7 @@
         <td width="30%"><%= @post.body %></td>
         <td width="10%"><%= link_to @post.item.name, admins_item_path(@item.id) %></td>
         <td width="10%"><%= @post.created_at.strftime('%Y/%m/%d') %></td>
-        <td width="10%"><%= link_to 'Destroy', post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
+        <td width="10%"><%= link_to '削除', post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
       </tr>
     </tbody>
   </table>
@@ -36,7 +36,7 @@
       <p><%= post_comment.content %></p>
     </div>
     <div class="col-md-1">
-        <%= link_to "Destroy", admins_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-outline-danger" %>
+        <%= link_to "削除", admins_post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-outline-danger" %>
     </div>
   </div>
   <% end %>

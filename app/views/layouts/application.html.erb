@@ -14,10 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
     <%= yield(:bg_area) %>
-    <main class="container mt-4">
+    <main class="container mt-4 mb-auto">
       <%= render 'layouts/flash_messages' %>
       <%= yield %>
     </main>

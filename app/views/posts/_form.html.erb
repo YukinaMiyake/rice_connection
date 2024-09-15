@@ -14,7 +14,7 @@
   </div>
   <div class="mb-2">
     <%= f.label :name, "商品名" %>
-    <%= f.collection_select :item_id, Item.all, :id, :name, { include_blank: "--select--" }, { class: "form-control" } %><br />
+    <%= f.collection_select :item_id, producer.items, :id, :name, { include_blank: "--select--" }, { class: "form-control" } %><br />
   </div>
   <%= f.submit submit, class: "btn btn-success btn-block mb-3" %>
 <% end %>

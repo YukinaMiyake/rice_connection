@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   
   def new 
     @post = Post.new
+    @producer = current_producer
   end
   
   def create
