@@ -2,7 +2,9 @@
   <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-8 offset-sm-2 mt-4">
     <h2 class="d-flex justify-content-center">プロフィール編集</h2>
 
-    <%= form_with model: @producer do |f| %>
+    <%= render 'layouts/error_messages', model: @producer %>
+    
+    <%= form_with model: @producer, method: :patch do |f| %>
       <div class="mb-1">
         <label>名前</label>
         <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %>
@@ -31,8 +33,10 @@
         <%= f.text_field :telephone_number, autocomplete: "telephone_number", class: "form-control" %>
       </div>
   
-      <%= f.submit "Update", class: "btn btn-secondary btn-block" %>
+      <%= f.submit "登録内容を保存する", class: "btn btn-secondary btn-block mb-3" %>
   
     <% end %>
+    
+    <%= link_to "退会する", quit_producer_path, class: "btn btn-outline-danger btn-block" %>
   </div>
 </div>

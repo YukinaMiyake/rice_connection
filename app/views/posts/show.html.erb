@@ -50,7 +50,7 @@
     <div class="col-md-5">
       <%= form_with model: [@post, @post_comment] do |f| %>
         <%= f.text_area :content, rows: '3', placeholder: "コメントをここに", class: "form-control" %>
-        <%= f.submit "送信", class: "form-control" %>
+        <%= f.submit "送信", class: "form-control-sm mt-2" %>
       <% end %>
     </div>
   <% end %>

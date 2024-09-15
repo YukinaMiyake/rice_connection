@@ -59,7 +59,12 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :producers, only: [:show, :edit]
+  resources :producers, only: [:show, :edit, :update] do
+    member do
+      get 'quit'
+      patch 'withdraw'
+    end
+  end
   resources :consumers, only: [:show, :edit, :update] do
     member do
       get 'quit'
