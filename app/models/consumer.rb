@@ -14,9 +14,9 @@ class Consumer < ApplicationRecord
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :email, presence: true
-  validates :postal_code, presence: true, length: { maximum: 7, minimum: 7 }, numericality: true
-  validates :address, presence: true
-  validates :telephone_number, presence: true
+  #validates :postal_code, presence: true, length: { maximum: 7, minimum: 7 }, numericality: true
+  #validates :address, presence: true
+  #validates :telephone_number, presence: true
   
   has_one_attached :profile_image
   
