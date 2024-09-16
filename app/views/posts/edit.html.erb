@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-    <h1>投稿編集</h1>
+  <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-8 offset-sm-2">
+    <h1 class="d-flex justify-content-center">投稿編集</h1>
 
-    <%= render 'form', post: @post, submit: "更新" %>
+    <%= render 'form', post: @post, producer: @producer, submit: "更新" %>
     
     <%= link_to '詳細画面へ戻る', post_path(@post.id), class: "btn btn-outline-primary" %>
     <%= link_to '一覧へ戻る', posts_path, class: "btn btn-outline-secondary" %>

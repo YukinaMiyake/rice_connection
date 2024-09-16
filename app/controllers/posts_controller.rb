@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :is_matching_login_producer, only: [:edit, :update]
+  before_action :authenticate_producer!, only: [:new, :edit, :update, :destroy]
   
   def new 
     @post = Post.new
@@ -13,6 +14,7 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿に成功しました"
       redirect_to post_path(@post.id)
     else
+      @producer = current_producer
       flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
@@ -35,6 +37,7 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    @producer = current_producer
   end
   
   def update
@@ -43,6 +46,8 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿更新に成功しました"
       redirect_to post_path(@post.id)
     else
+      @producer = current_producer
+      flash.now[:alert] = "投稿に失敗しました"
       render :edit
     end
   end
@@ -50,7 +55,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path
+    redirect_to producer_path(current_producer.id)
   end
   
   private
@@ -60,8 +65,18 @@ class PostsController < ApplicationController
   
   def is_matching_login_producer
     post = Post.find(params[:id])
-    unless current_producer == post.producer
+    if current_producer != post.producer
+      flash[:notice] = "ログインユーザーではないので編集できません"
       redirect_to posts_path
     end
   end
+  
+  def authenticate_producer!
+    unless producer_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
+
+
 end

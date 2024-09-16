@@ -1,4 +1,6 @@
 class ProducersController < ApplicationController
+  before_action :authenticate_producer!
+  before_action :is_matching_login_producer, only: [:edit, :update]
   
   def show
     @producer = Producer.find(params[:id])
@@ -38,5 +40,20 @@ class ProducersController < ApplicationController
   
   def producer_params
     params.require(:producer).permit(:last_name, :first_name, :profile_image, :email, :postal_code, :address, :telephone_number)
+  end
+  
+  def authenticate_producer!
+    unless producer_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
+  
+  def is_matching_login_producer
+    producer = Producer.find(params[:id])
+    unless producer.id == current_producer.id
+      flash[:notice] = "ログインユーザーではないので編集できません"
+      redirect_to producer_path(current_producer)
+    end
   end
 end

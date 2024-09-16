@@ -1,4 +1,6 @@
 class ConsumersController < ApplicationController
+  before_action :authenticate_consumer!
+  before_action :is_matching_login_consumer, only: [:edit, :update]
   
   def show
     @consumer = Consumer.find(params[:id])
@@ -37,5 +39,19 @@ class ConsumersController < ApplicationController
   
   def consumer_params
     params.require(:consumer).permit(:last_name, :first_name, :profile_image, :email, :postal_code, :address, :telephone_number)
+  end
+  
+  def authenticate_consumer!
+    unless consumer_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
+  
+  def is_matching_login_consumer
+    if @consumer != current_consumer
+      flash[:notice] = "ログインユーザーではないので編集できません"
+      redirect_to consumer_path(current_consumer)
+    end
   end
 end
