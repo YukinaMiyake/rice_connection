@@ -1,0 +1,46 @@
+ja:
+  activerecord:
+    model:
+      item: 商品
+      post: 投稿
+      post_comment: コメント
+      genre: ジャンル
+      cart_item: カート商品
+      order: 注文
+      order_detail: 注文詳細
+      address: 配送先
+    attributes:
+      item:
+        name: 商品名
+        genre: ジャンル
+        introduction: 商品説明文
+        price: 商品価格
+        stock: 在庫数
+        status: ステータス
+      post:
+        title: タイトル
+        body: 本文
+      post_cpmment: 
+        content: 内容
+      genre:
+        name: ジャンル名
+      cart_item:
+        amount: 数量
+      order:
+        postal_code: 郵便番号
+        address: 住所
+        name: 宛名
+        total_payment: 請求額
+        shipping_cost: 送料
+        payment_method: 支払方法
+        status: 注文ステータス
+      order_detail:
+        price: 商品価格
+        amount: 数量
+        status: 発送ステータス
+      address: 
+        postal_code: 郵便番号
+        address: 住所
+        name: 宛名
+      
+        

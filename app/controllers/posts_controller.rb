@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :is_matching_login_producer, only: [:edit, :update]
   before_action :authenticate_producer!, only: [:new, :edit, :update, :destroy]
+  before_action :is_matching_login_producer, only: [:edit, :update]
   
   def new 
     @post = Post.new
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
   
   private
   def post_params
-    params.require(:post).permit(:title, :body, :item_id)
+    params.require(:post).permit(:image, :title, :body, :item_id)
   end
   
   def is_matching_login_producer
@@ -77,6 +77,4 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
   end
-
-
 end

@@ -8,7 +8,6 @@ class Post < ApplicationRecord
   
   validates :title, presence: true
   validates :body, length: { minimum: 1, maximum: 100 }
-  validates :item_id, presence: true
   
   
   def get_image(width, height)

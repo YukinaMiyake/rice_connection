@@ -10,6 +10,8 @@ class Consumer < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :producers, through: :relationships
   
   validates :last_name, presence: true
   validates :first_name, presence: true
@@ -32,11 +34,21 @@ class Consumer < ApplicationRecord
     "#{last_name}　#{first_name}"
   end
   
-  
   def active_for_authentication?
     super && (self.is_active == true)
   end
   
+  def follow(producer)
+    self.relationships.find_or_create_by(producer_id: producer.id)
+  end
+  
+  def unfollow(producer)
+    self.relationships.find_by(producer_id: producer.id)&.destroy
+  end
+
+  def following?(producer)
+    self.producers.include?(producer)
+  end
 end
 
 # == Schema Information

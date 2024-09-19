@@ -176,13 +176,14 @@ ActiveRecord::Schema.define(version: 2024_09_16_091811) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id", null: false
-    t.integer "followed_id", null: false
+    t.integer "consumer_id", null: false
+    t.integer "producer_id", null: false
     t.boolean "status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["followed_id"], name: "index_relationships_on_followed_id"
-    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["consumer_id", "producer_id"], name: "index_relationships_on_consumer_id_and_producer_id", unique: true
+    t.index ["consumer_id"], name: "index_relationships_on_consumer_id"
+    t.index ["producer_id"], name: "index_relationships_on_producer_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

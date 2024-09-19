@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
   end
   
-  resources :addresses 
+  resources :addresses
   
   namespace :producer do
     resources :order_details, only: [:index, :show, :update]
@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   end
   
   resources :producers, only: [:show, :edit, :update] do
+    resource :relationships, only: [:create, :destroy] 
     member do
       get 'quit'
       patch 'withdraw'

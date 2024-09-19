@@ -1,21 +1,51 @@
-<div>
-  <h3><%= @producer.name %></h3>
-  <%= image_tag @producer.get_profile_image(100,100) %>
-  <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %></p>
-  <%=link_to "注文一覧", producer_order_details_path, class: "btn btn-outline-secondary" %>
+<div class="row">
+  <div class="col-md-6">
+    <h3><%= @producer.name %></h3>
+    <%= image_tag @producer.get_profile_image(100,100) %>
+    <% if current_producer %>
+      <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %></p>
+      <%=link_to "注文一覧", producer_order_details_path, class: "btn btn-outline-secondary" %>
+    <% end %>
+    
+    <%= render 'relationships/follow_button', producer: @producer if current_consumer %>
+  </div>
+ 
+ 
+  <div class="col-md-6">
+     
+  </div>
  </div>
  
 <!--ユーザーの投稿一覧-->
-<% @posts.each do |post| %>
-<div>
-  <%= link_to post_path(post.id) do %>
- 　  <%= image_tag post.get_image(100,100) %>
-  <% end %>
-  <p>タイトル:<%= link_to post.title, post_path(post.id) %></p>
-  <p>本文:<%= post.body %></p>
-  <p>商品名:<%= link_to post.item.name, item_path(post.item.id) %></p>
-  <p><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></p>
+<div class="row mt-5">
+  <div class="col-md-6">
+    <h4>投稿一覧</h4>
+    <% @posts.each do |post| %>
+    <div>
+      <%= link_to post_path(post.id) do %>
+     　  <%= image_tag post.get_image(200,200), size: "200x200" %>
+      <% end %>
+      <p>タイトル:<%= link_to post.title, post_path(post.id) %></p>
+      <p>本文:<%= post.body %></p>
+      <p>商品名:<%= link_to post.item.name, item_path(post.item.id) %></p>
+      <p><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></p>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h4>商品一覧</h4>
+    <% @items.each do |item| %>
+    <div>
+      <%= link_to item_path(item.id) do %>
+     　  <%= image_tag item.get_image(200,200), size: "200x200" %>
+      <% end %>
+      <p>商品名:<%= link_to item.name, item_path(item.id) %></p>
+      <p>ジャンル:<%= item.genre %></p>
+      <p>商品説明文:<%= item.introduction %></p>
+      <p>商品価格（税抜):<%= item.price %></p>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
 
 

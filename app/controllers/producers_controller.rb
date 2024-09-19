@@ -1,10 +1,12 @@
 class ProducersController < ApplicationController
-  before_action :authenticate_producer!
+  before_action :authenticate_producer!, only: [:edit, :update, :quit, :withdraw]
   before_action :is_matching_login_producer, only: [:edit, :update]
   
   def show
     @producer = Producer.find(params[:id])
     @posts = @producer.posts
+    @items = @producer.items
+
   end
 
   def edit

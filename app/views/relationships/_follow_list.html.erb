@@ -1,0 +1,14 @@
+<h4>フォロー一覧</h4>
+<% if producers.exists? %>
+  <%= producers.count %>フォロー
+  <% producers.each do |producer| %>
+    <table>
+      <tr>
+        <th>生産者名</th>
+        <td><%= producer.name %></td>
+      </tr>
+    </table>
+  <% end %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>

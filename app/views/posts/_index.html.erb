@@ -12,8 +12,8 @@
   <tbody>
     <% posts.each do |post| %>
     <tr>
-      <td><%= image_tag post.producer.get_profile_image(50,50), size: "50x50" %></td>
-      <td><%= image_tag post.get_image(50, 50), size: "50x50" %></td>
+      <td><%= image_tag post.producer.get_profile_image(100,100), size: "100x100" %></td>
+      <td><%= image_tag post.get_image(100, 100), size: "100x100" %></td>
       <td><%= link_to post.title, post_path(post.id) %></td>
       <td><%= post.body.truncate(20) %></td>
       <td><%= post.item.name %></td>

@@ -1,0 +1,5 @@
+<% if current_consumer.following?(producer) %>
+  <%= link_to "フォローを外す", producer_relationships_path(producer), method: :delete, class: "btn btn-danger" %>
+<% else %>
+  <%= link_to "フォローする", producer_relationships_path(producer), method: :post, class: "btn btn-success" %>
+<% end %>

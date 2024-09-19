@@ -1,12 +1,16 @@
 class Item < ApplicationRecord
   
-  belongs_to :producer, optional: true
-  belongs_to :genre, optional: true
+  belongs_to :producer
+  belongs_to :genre
   has_many :posts, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :order_details, dependent: :destroy
   
   has_one_attached :image
+  
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :introduction, presence: true, length: { maximum: 200 }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   
   def get_image(width, height)
     unless image.attached?

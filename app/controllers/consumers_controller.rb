@@ -4,6 +4,7 @@ class ConsumersController < ApplicationController
   
   def show
     @consumer = Consumer.find(params[:id])
+    @producers = @consumer.producers
   end
 
   def edit
