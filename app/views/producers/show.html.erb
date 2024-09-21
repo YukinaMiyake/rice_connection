@@ -6,8 +6,9 @@
       <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %></p>
       <%=link_to "注文一覧", producer_order_details_path, class: "btn btn-outline-secondary" %>
     <% end %>
-    
-    <%= render 'relationships/follow_button', producer: @producer if current_consumer %>
+    <div class="row">
+      <%= render 'relationships/follow_button', producer: @producer if current_consumer %>
+    </div>
   </div>
  
  
@@ -40,7 +41,7 @@
      　  <%= image_tag item.get_image(200,200), size: "200x200" %>
       <% end %>
       <p>商品名:<%= link_to item.name, item_path(item.id) %></p>
-      <p>ジャンル:<%= item.genre %></p>
+      <p>ジャンル:<%= item.genre.name %></p>
       <p>商品説明文:<%= item.introduction %></p>
       <p>商品価格（税抜):<%= item.price %></p>
     </div>

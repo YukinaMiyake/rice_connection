@@ -47,7 +47,7 @@ class PostsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       @producer = current_producer
-      flash.now[:alert] = "投稿に失敗しました"
+      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
   end
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to producer_path(current_producer.id)
+    redirect_to producer_path(current_producer.id), alert: "投稿を削除しました"
   end
   
   private

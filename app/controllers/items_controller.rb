@@ -39,6 +39,7 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
+    @producer = @item.producer
   end
 
   def edit
@@ -48,17 +49,17 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice] = "情報更新に成功しました"
+      flash[:notice] = "商品情報を更新しました"
       redirect_to item_path(@item.id)
     else
       render :edit
     end
+  end
     
-    def destroy
-      @item = Item.find(params[:id])
-      @item.destroy
-      redirect_to items_path
-    end
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to producer_path(current_producer.id), alert: "商品を削除しました"
   end
   
   private

@@ -18,7 +18,7 @@
           <p class="font-weight-bold">生産者名</p>
         </div>
         <div class="col-md-7">
-          <%= @item.producer.name %>
+          <%= link_to @item.producer.name, producer_path(@producer.id) %>
         </div>
       </div>
       <% end %>
