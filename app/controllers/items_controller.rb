@@ -69,6 +69,9 @@ class ItemsController < ApplicationController
   
   def correct_user
     @item = current_producer.items.find_by_id(params[:id])
-    redirect_to root_path unless @item
+    unless @item
+      flash[:alert] = "編集権限がありません"
+      redirect_to root_path 
+    end
   end
 end

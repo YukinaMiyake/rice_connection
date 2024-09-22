@@ -4,7 +4,7 @@
     <%= image_tag @producer.get_profile_image(100,100) %>
     <% if current_producer %>
       <p><%= link_to "プロフィール編集", edit_producer_path(@producer.id) %></p>
-      <%=link_to "注文一覧", producer_order_details_path, class: "btn btn-outline-secondary" %>
+      <%=link_to "注文一覧", producer_order_details_path, class: "btn btn-outline-secondary mb-3" %>
     <% end %>
     <div class="row">
       <%= render 'relationships/follow_button', producer: @producer if current_consumer %>

@@ -51,7 +51,7 @@ class ConsumersController < ApplicationController
   
   def is_matching_login_consumer
     if @consumer != current_consumer
-      flash[:notice] = "ログインユーザーではないので編集できません"
+      flash[:alert] = "編集権限がありません"
       redirect_to consumer_path(current_consumer)
     end
   end

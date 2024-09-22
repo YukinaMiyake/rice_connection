@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <h2 class="mt-2 mb-4">配送先登録</h2>
-      <%= render 'address_form', address: @address %>
+      <%= render 'address_form', address: @address, submit: "新規登録" %>
   </div>
 
   <div class="col-md-8">
@@ -22,7 +22,7 @@
           <td><%= address.address %></td>
           <td><%= address.name %></td>
           <td><%= link_to "編集", edit_address_path(address.id), class: "btn btn-success" %>
-              <%= link_to "削除", addresses_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+              <%= link_to "削除", address_path(address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
           </tr>
         <% end %>
         </tbody>

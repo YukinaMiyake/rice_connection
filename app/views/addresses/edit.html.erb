@@ -1,2 +1,11 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+<div class="row">
+  <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+    
+    <h3>配送先情報編集</h3>
+    
+    <%= render 'address_form', address: @address, submit: "更新" %>
+    <%= link_to "削除", address_path(@address.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-block mb-3" %>
+    
+    <%= link_to "一覧へ戻る", addresses_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>

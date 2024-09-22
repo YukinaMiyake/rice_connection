@@ -54,7 +54,7 @@ class ProducersController < ApplicationController
   def is_matching_login_producer
     producer = Producer.find(params[:id])
     unless producer.id == current_producer.id
-      flash[:notice] = "ログインユーザーではないので編集できません"
+      flash[:notice] = "編集権限がありません"
       redirect_to producer_path(current_producer)
     end
   end
