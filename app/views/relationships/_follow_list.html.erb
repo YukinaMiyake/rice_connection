@@ -1,14 +1,15 @@
-<h4>フォロー一覧</h4>
+<div class="mt-5">
 <% if producers.exists? %>
-  <%= producers.count %>フォロー
+  <h5><%= producers.count %>フォロー</h5>
   <% producers.each do |producer| %>
-    <table>
-      <tr>
-        <th>生産者名</th>
-        <td><%= producer.name %></td>
-      </tr>
-    </table>
+    <div class="row">
+      <div class="col-md-5 col-sm-8">
+        <%= image_tag producer.get_profile_image(30,30) %>
+        <%= link_to producer.name, producer_path(producer.id) %>
+      </div>
+    </div>
   <% end %>
 <% else %>
-  <p>ユーザーはいません</p>
+  <h5>フォローしている<br>ユーザーはいません</h5>
 <% end %>
+</div>

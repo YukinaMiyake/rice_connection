@@ -2,8 +2,9 @@
 <%= image_tag consumer.get_profile_image(150,150),size: "150x150" %>
 <% if consumer == current_consumer %>
   <p><%= link_to "プロフィール編集", edit_consumer_path(consumer.id) %></p>
+
+  <p><%= link_to "配送先登録", addresses_path %></p>
 <% end %>
-<p><%= link_to "配送先登録", addresses_path %></p>
 
 <%= link_to "マイページ", consumer_path(consumer), class: "btn btn-outline-primary btn-block" %>
 <%= link_to "ショッピングカート", cart_items_path, class: "btn btn-outline-info btn-block" %>

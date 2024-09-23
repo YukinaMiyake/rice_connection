@@ -50,9 +50,11 @@ class ConsumersController < ApplicationController
   end
   
   def is_matching_login_consumer
-    if @consumer != current_consumer
+    consumer = Consumer.find(params[:id])
+    unless consumer.id = current_consumer.id
       flash[:alert] = "編集権限がありません"
       redirect_to consumer_path(current_consumer)
+      return
     end
   end
 end
