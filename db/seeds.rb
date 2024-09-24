@@ -62,7 +62,7 @@ genre_names = %w(
       )
 genres = genre_names.map { |name| Genre.create!(name: name) }
 
-if Rails.env.development?
+#if Rails.env.development?
   (1..5).each do |i|
     producer = Producer.create!(
       first_name: Faker::Japanese::Name.first_name,
@@ -113,5 +113,5 @@ if Rails.env.development?
         )
     end
   end
-end
+#end
 

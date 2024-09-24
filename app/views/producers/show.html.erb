@@ -24,7 +24,7 @@
     <% @posts.each do |post| %>
     <div>
       <%= link_to post_path(post.id) do %>
-     　  <%= image_tag post.get_image(200,200), size: "200x200" %>
+     　  <%= image_tag post.get_image(200,180), size: "200x180" %>
       <% end %>
       <p>タイトル:<%= link_to post.title, post_path(post.id) %></p>
       <p>本文:<%= post.body %></p>
@@ -38,7 +38,7 @@
     <% @items.each do |item| %>
     <div>
       <%= link_to item_path(item.id) do %>
-     　  <%= image_tag item.get_image(200,200), size: "200x200" %>
+     　  <%= image_tag item.get_image(200,180), size: "200x180" %>
       <% end %>
       <p>商品名:<%= link_to item.name, item_path(item.id) %></p>
       <p>ジャンル:<%= item.genre.name %></p>
