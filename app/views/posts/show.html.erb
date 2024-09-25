@@ -15,7 +15,7 @@
         <td width="10%"><%= link_to @post.item.name, item_path(@item.id) %></td>
         <td width="10%"><%= @post.created_at.strftime('%Y/%m/%d') %></td>
           <% if @post.producer == current_producer %>
-        <td width="10%"><%= link_to "編集", edit_post_path(@post.id), class: "btn btn-sm btn-success" %></td> 
+        <td width="10%"><%= link_to "編集", edit_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td> 
         <td width="10%"><%= link_to "削除", post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
           <% end %>
       </tr>

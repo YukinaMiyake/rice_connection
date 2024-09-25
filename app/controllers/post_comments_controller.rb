@@ -4,8 +4,11 @@ class PostCommentsController < ApplicationController
     comment = PostComment.new(post_comment_params)
     comment.consumer_id = current_consumer.id
     comment.post_id = post.id
-    comment.save
-    redirect_to post_path(post.id)
+    if comment.save
+      redirect_to post_path(post.id)
+    else
+      flash[:alert] = "コメントを入力してください"
+    end
   end
   
   def destroy

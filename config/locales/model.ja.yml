@@ -20,6 +20,7 @@ ja:
       post:
         title: タイトル
         body: 本文
+        item: 商品
       post_cpmment: 
         content: 内容
       genre:

@@ -1,6 +1,8 @@
 class PostComment < ApplicationRecord
   belongs_to :consumer
   belongs_to :post
+  
+  validates :content, presence: true
     
 end
 
