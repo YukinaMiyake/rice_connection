@@ -8,6 +8,7 @@ class Admins::ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
+    @producer = @item.producer
   end
   
   def edit
@@ -22,5 +23,10 @@ class Admins::ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  private
+  def item_params
+    params.require(:item).permit(:name, :image, :genre_id, :introduction, :price, :stock)
   end
 end

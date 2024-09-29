@@ -1,24 +1,25 @@
-<table class="table table-hover table-inverse">
-  <thead>
-    <tr style="background-color: #f7f7f7">
-      <th></th>
-      <th>画像</th>
-      <th>タイトル</th>
-      <th>本文</th>
-      <th>商品名</th>
-      <th>コメント</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% posts.each do |post| %>
-    <tr>
-      <td><%= image_tag post.producer.get_profile_image(100,100), size: "100x100" %></td>
-      <td><%= image_tag post.get_image(120, 100), size: "120x100" %></td>
-      <td><%= link_to post.title, post_path(post.id) %></td>
-      <td><%= post.body.truncate(20) %></td>
-      <td><%= post.item.name %></td>
-      <td><%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="d-flex flex-wrap">
+  <% posts.each do |post| %>
+  <div class="col-md-4">
+    <div class="card mb-3 px-4 py-4">
+      <div class="card-image">
+        <%= link_to producer_path(post.producer.id) do %>
+          <%= image_tag post.get_image(300, 200), size: "300x200" %>
+        <% end %>
+      </div>
+      <div class="card-profile">
+        <%= image_tag post.producer.get_profile_image(80,80), size: "80x80" %>
+        <%= link_to post.producer.name, producer_path(post.producer.id) %>
+      </div>
+      
+      <%= link_to post.title, post_path(post.id) %>
+      <%= post.body.truncate(20) %></br>
+      <%= post.item.name %>
+      <%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+

@@ -3,8 +3,17 @@
     <div class="col-md-5">
       <p><%= image_tag @item.get_image(400,300), size: "400x300" %></p>
     </div>
-  
+
+
     <div class="col-md-6">
+      <div class="row mt-2">
+
+        <div class="col-md-7">
+          <%= image_tag @item.producer.get_profile_image(100,100), size: "100x100" %>
+
+          <%= link_to @item.producer.name, admins_producer_path(@producer.id) %>
+        </div>
+      </div>
       <div class="row mt-4">
         <div class="col-md-3">
           <p class="font-weight-bold">商品名</p>
@@ -13,14 +22,7 @@
           <%= @item.name %>
         </div>
       </div>
-      <div class="row mt-2">
-        <div class="col-md-3">
-          <p class="font-weight-bold">生産者名</p>
-        </div>
-        <div class="col-md-7">
-          <%= @item.producer.name %>
-        </div>
-      </div>
+
       <div class="row mt-2">
         <div class="col-md-3">
           <p class="font-weight-bold">ジャンル</p>

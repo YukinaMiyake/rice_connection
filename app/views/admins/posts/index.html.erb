@@ -3,10 +3,13 @@
   <div class="col-md-6 mb-3">
     <%= form_with url: admins_posts_path, method: :get do |f| %>
     <div class="row">
-      <div class="col-md-9">
-        <%= f.search_field :keyword, value: params[:keyword], placeholder: "--キーワードで検索--", class: "form-control" %>
-      </div>
       <div class="col-md-3">
+         <%= f.select :search_type, [["投稿", 'post'], ["生産者", 'producer']], { selected: params[:search_query] }, { class: "form-control" } %>
+      </div>
+      <div class="col-md-7">
+        <%= f.search_field :search_query, value: params[:search_query], placeholder: "--キーワードで検索--", class: "form-control" %>
+      </div>
+      <div class="col-md-2">
         <%= f.submit "検索", class: "btn btn-outline-secondary btn-block" %>
       </div>
     </div>
@@ -16,7 +19,7 @@
 <table class="table table-hover table-inverse">
   <thead>
     <tr style="background-color: #f7f7f7">
-      <th></th>
+      <th>投稿者</th>
       <th>画像</th>
       <th>タイトル</th>
       <th>本文</th>
@@ -27,7 +30,8 @@
   <tbody>
     <% @posts.each do |post| %>
     <tr>
-      <td><%= image_tag post.producer.get_profile_image(100,100), size: "100x100" %></td>
+      <td><%= image_tag post.producer.get_profile_image(100,100), size: "100x100" %>
+          <%= link_to post.producer.name, admins_producer_path(post.producer.id) %></td>
       <td><%= image_tag post.get_image(100, 80), size: "100x100" %></td>
       <td><%= link_to post.title, admins_post_path(post.id) %></td>
       <td><%= post.body.truncate(20) %></td>

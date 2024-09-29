@@ -4,6 +4,14 @@
       <p><%= image_tag @item.get_image(400,300), size: "400x300" %></p>
     </div>
     <div class="col-md-6">
+      <% unless producer_signed_in? %>
+      <div class="row mt-2">
+        <div class="col-md-7">
+          <%= image_tag @item.producer.get_profile_image(100,100), size: "100x100" %>
+          <%= link_to @item.producer.name, producer_path(@producer.id) %>
+        </div>
+      </div>
+      <% end %>
       <div class="row mt-4">
         <div class="col-md-3">
           <p class="font-weight-bold">商品名</p>
@@ -12,16 +20,7 @@
           <%= @item.name %>
         </div>
       </div>
-      <% unless producer_signed_in? %>
-      <div class="row mt-2">
-        <div class="col-md-3">
-          <p class="font-weight-bold">生産者名</p>
-        </div>
-        <div class="col-md-7">
-          <%= link_to @item.producer.name, producer_path(@producer.id) %>
-        </div>
-      </div>
-      <% end %>
+      
       <div class="row mt-2">
         <div class="col-md-3">
           <p class="font-weight-bold">ジャンル</p>
@@ -71,7 +70,7 @@
       <% end %>
     <% end %>
     <% if @item.producer == current_producer %>
-  <p><%= link_to "編集", edit_item_path(@item.id), class: "btn btn-sm btn-success mb-3" %>
+  <p><%= link_to "編集", edit_item_path(@item.id), data: { turbolinks: false }, class: "btn btn-sm btn-success mb-3" %>
      <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger mb-3" %>
      <%= link_to "一覧へ戻る", items_path, class: "btn btn-outline-secondary mb-3" %></p>
     <% end %>

@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+  <thead>
+    <tr style="background-color: #f7f7f7">
+      <th width="20%">商品画像</th>
+      <th width="20%">商品名</th>
+      <th width="30%">商品説明文</th>
+      <th width="10%">ジャンル</th>
+      <th width="20%">商品価格(税抜)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= image_tag item.get_image(160,100), size: "160x100" %></td>
+      <td><%= link_to item.name, item_path(item.id) %></td>
+      <td><%= item.introduction.truncate(20) %></td>
+      <td><%= item.genre.name %></td>
+      <td><%= item.price %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

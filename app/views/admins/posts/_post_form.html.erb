@@ -1,0 +1,42 @@
+<%= form_with model: post do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+  <div class="mb-2">
+    <%= f.label :image, "画像" %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "image" %>
+    <%= image_tag post.get_image(120, 100), size: "120x100", id: "image-preview" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :body, "本文" %>
+    <%= f.text_area :body, rows: 5, class: "form-control" %>
+  </div>
+  <div class="mb-2">
+    <%= f.label :name, "商品名" %>
+    <%= f.collection_select :item_id, producer.items, :id, :name, { include_blank: "--select--" }, { class: "form-control" } %><br />
+  </div>
+  <%= f.submit submit, class: "btn btn-success btn-block mb-3" %>
+<% end %>
+
+<script>
+  const imageInput = document.querySelector('#image');
+  const imagePreview = document.querySelector('#image-preview');
+
+
+  imageInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      imagePreview.src = reader.result;
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.src = "";
+    }
+  });
+</script>

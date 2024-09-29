@@ -3,7 +3,7 @@
   <div class="mb-2">
     <%= f.label :image, "画像" %>
     <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "image" %>
-    <%= image_tag post.get_image(120, 100), size: "120x100", id: "image-preview" %>
+    <%= image_tag post.get_image(140, 100), size: "140x100", id: "image-preview" %>
   </div>
   <div class="mb-2">
     <%= f.label :title, "タイトル" %>

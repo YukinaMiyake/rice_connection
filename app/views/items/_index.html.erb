@@ -1,0 +1,25 @@
+<div class="d-flex flex-wrap">
+  <% items.each do |item| %>
+  <div class="col-md-4">
+  <div class="card text-center mb-3 px-4 py-4">
+    <%= link_to item_path(item.id) do %>
+      <%= image_tag item.get_image(300,200), size: "300x200" %>
+    <% end %>
+    <%= link_to item.name, item_path(item.id) %>
+  <div class="card-intro">
+    <%= item.introduction.truncate(20) %>
+  </div>
+  <div class="card-genre">
+    <%= item.genre.name %>
+  </div>
+  <div class="card-price">
+    <%= item.price %>円
+  </div>
+  </div>
+  </div>
+  <% end %>
+  
+  
+
+
+</div> 

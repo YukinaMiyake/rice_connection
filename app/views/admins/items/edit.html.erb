@@ -1,5 +1,10 @@
-<h3>商品情報編集</h3>
-<%= render 'items/item_form', item: @item, submit: "edit" %>
-
-<%= link_to '詳細画面へ', admins_item_path(@item.id) %>
-<%= link_to '一覧へ', admins_items_path %>
+<div class="row">
+  <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+  <h3>商品情報編集</h3>
+  <%= render 'item_form', item: @item, submit: "更新" %>
+  <%= link_to "削除", admins_item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-block mb-3" %>
+  
+  <%= link_to '詳細画面へ', admins_item_path(@item.id), class: "btn btn-outline-primary mb-3" %>
+  <%= link_to '一覧へ', admins_items_path, class: "btn btn-outline-secondary mb-3" %>
+  </div>
+</div>

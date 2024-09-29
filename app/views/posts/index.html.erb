@@ -3,15 +3,18 @@
   <div class="col-md-6 mb-3">
     <%= form_with url: posts_path, method: :get do |f| %>
     <div class="row">
-      <div class="col-md-9">
-        <%= f.search_field :keyword, value: params[:keyword], placeholder: "--キーワードで検索--", class: "form-control" %>
-      </div>
       <div class="col-md-3">
+         <%= f.select :search_type, [["投稿", 'post'], ["生産者", 'producer']], { selected: params[:search_query] }, { class: "form-control" } %>
+      </div>
+      <div class="col-md-7">
+        <%= f.search_field :search_query, value: params[:search_query], placeholder: "--キーワードで検索--", class: "form-control" %>
+      </div>
+      <div class="col-md-2">
         <%= f.submit "検索", class: "btn btn-outline-secondary btn-block" %>
       </div>
     </div>
     <% end %>
-    </div>
+  </div>
 </div>
 
 <%= render 'index', posts: @posts %>

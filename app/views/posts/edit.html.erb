@@ -5,7 +5,7 @@
     <%= render 'form', post: @post, producer: @producer, submit: "更新" %>
     <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger btn-block mb-3" %>
     
-    <%= link_to '詳細画面へ戻る', post_path(@post.id), class: "btn btn-outline-primary" %>
-    <%= link_to '一覧へ戻る', posts_path, class: "btn btn-outline-secondary" %>
+    <%= link_to '詳細画面へ戻る', post_path(@post.id), class: "btn btn-outline-primary mb-3" %>
+    <%= link_to '一覧へ戻る', posts_path, class: "btn btn-outline-secondary mb-3" %>
   </div>
 </div>
