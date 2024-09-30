@@ -7,7 +7,7 @@
           <%= image_tag post.get_image(300, 200), size: "300x200" %>
         <% end %>
       </div>
-      <div class="card-profile">
+      <div class="card-profile mt-2">
         <%= image_tag post.producer.get_profile_image(80,80), size: "80x80" %>
         <%= link_to post.producer.name, producer_path(post.producer.id) %>
       </div>

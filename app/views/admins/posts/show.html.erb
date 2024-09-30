@@ -8,13 +8,14 @@
         <td><%= image_tag @post.get_image(300, 200), size: "300x200" %></td>
       </tr>
       <tr>
-        <td width="20%"><%= image_tag @post.producer.get_profile_image(100,100) %><br />
+        <td width="10%"><%= image_tag @post.producer.get_profile_image(100,100) %><br />
           <p><%= link_to @post.producer.name, admins_producer_path(@producer.id) %></p></td>
         <td width="20%"><%= @post.title %></td>
         <td width="30%"><%= @post.body %></td>
         <td width="10%"><%= link_to @post.item.name, admins_item_path(@item.id) %></td>
         <td width="10%"><%= @post.created_at.strftime('%Y/%m/%d') %></td>
         <td width="10%"><%= link_to "編集", edit_admins_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td>
+        <td width="10%"><%= link_to "編集", admins_post_path(@post.id), class: "btn btn-sm btn-danger" %></td>
       </tr>
     </tbody>
   </table>
