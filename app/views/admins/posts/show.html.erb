@@ -15,7 +15,7 @@
         <td width="10%"><%= link_to @post.item.name, admins_item_path(@item.id) %></td>
         <td width="10%"><%= @post.created_at.strftime('%Y/%m/%d') %></td>
         <td width="10%"><%= link_to "編集", edit_admins_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td>
-        <td width="10%"><%= link_to "編集", admins_post_path(@post.id), class: "btn btn-sm btn-danger" %></td>
+        <td width="10%"><%= link_to "削除", admins_post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
       </tr>
     </tbody>
   </table>

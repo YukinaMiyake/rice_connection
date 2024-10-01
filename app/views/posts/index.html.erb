@@ -4,7 +4,7 @@
     <%= form_with url: posts_path, method: :get do |f| %>
     <div class="row">
       <div class="col-md-3">
-         <%= f.select :search_type, [["投稿", 'post'], ["生産者", 'producer']], { selected: params[:search_query] }, { class: "form-control" } %>
+         <%= f.select :search_type, [["投稿", 'post'], ["生産者", 'producer']], { selected: params[:search_type] }, { class: "form-control" } %>
       </div>
       <div class="col-md-7">
         <%= f.search_field :search_query, value: params[:search_query], placeholder: "--キーワードで検索--", class: "form-control" %>

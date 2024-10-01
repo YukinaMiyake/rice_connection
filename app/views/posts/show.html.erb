@@ -8,15 +8,15 @@
         <td><%= image_tag @post.get_image(300, 200), size: "300x200" %></td>
       </tr>
       <tr>
-        <td width="10%"><%= image_tag @post.producer.get_profile_image(100,100) %><br />
+        <td width="5%"><%= image_tag @post.producer.get_profile_image(100,100) %><br />
           <p><%= link_to @post.producer.name, producer_path(@producer.id) %></p></td>
-        <td width="20%"><%= @post.title %></td>
+        <td width="15%"><%= @post.title %></td>
         <td width="30%"><%= @post.body %></td>
         <td width="10%"><%= link_to @post.item.name, item_path(@item.id) %></td>
         <td width="10%"><%= @post.created_at.strftime('%Y/%m/%d') %></td>
           <% if @post.producer == current_producer %>
-        <td width="10%"><%= link_to "編集", edit_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td> 
-        <td width="10%"><%= link_to "削除", post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
+        <td width="15%"><%= link_to "編集", edit_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td> 
+        <td width="15%"><%= link_to "削除", post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
           <% end %>
       </tr>
     </tbody>

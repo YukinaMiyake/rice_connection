@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:destroy]
     end
-    resources :items, only: [:index, :show, :edit, :update]
+    resources :items, only: [:index, :show, :edit, :update, :destroy]
     resources :orders, only: [:index, :show, :update]
     resources :producers, only: [:index, :show, :edit, :update]
     resources :consumers, only: [:index, :show, :edit, :update]

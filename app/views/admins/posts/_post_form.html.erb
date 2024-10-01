@@ -1,4 +1,4 @@
-<%= form_with model: post do |f| %>
+<%= form_with model: [:admins, post] do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
   <div class="mb-2">
     <%= f.label :image, "画像" %>

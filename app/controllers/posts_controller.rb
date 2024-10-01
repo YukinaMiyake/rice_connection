@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.all
+    @posts = Post.all.joins(:producer)
     #if params[:keyword].present?
       #@posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%").or(
                #@posts.where('body LIKE ?', "%#{params[:keyword]}%"))
@@ -30,11 +30,8 @@ class PostsController < ApplicationController
     if params[:search_type] == 'post'
       @posts = @posts.where('title LIKE ?', "%#{params[:search_query]}%")
     elsif params[:search_type] == 'producer'
-      @producers = Producer.where(last_name: params[:search_query]).or(
-                   Producer.where(first_name: params[:search_query]))
-      if @producers.present?
-        @posts = @producers.first.posts
-      end
+      @posts = @posts.where("producers.last_name LIKE ?", "%#{params[:search_query]}%").or(
+               @posts.where("producers.first_name LIKE ?", "%#{params[:search_query]}%"))
     end
   end
   
