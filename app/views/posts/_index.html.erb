@@ -13,8 +13,8 @@
       </div>
       
       <%= link_to post.title, post_path(post.id) %>
-      <%= post.body.truncate(20) %></br>
-      <%= post.item.name %>
+      <%= post.body.truncate(30) %></br>
+      <p>商品：<%= post.item.name %></p>
       <%= link_to "#{post.post_comments.count}コメント", post_path(post.id) %>
     </div>
   </div>
