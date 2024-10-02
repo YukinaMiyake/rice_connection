@@ -21,6 +21,9 @@
             <%= link_to "商品一覧", items_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
+            <%= link_to "注文履歴一覧", producer_order_details_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
             <%= link_to "マイページ", producer_path(current_producer.id), class: 'nav-link' %>
           </li>
           <li class="nav-item">

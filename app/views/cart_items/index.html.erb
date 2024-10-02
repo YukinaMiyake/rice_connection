@@ -11,9 +11,9 @@
       <table class="table">
         <thead>
           <tr style="background-color: #f5f5f5">
-            <th width="40%">商品名</th>
+            <th width="45%">商品名</th>
             <th width="15%">単価(税込)</th>
-            <th width="25%">数量</th>
+            <th width="20%">数量</th>
             <th width="10%">小計</th>
             <th width="10%"></th>
           </tr>
@@ -29,7 +29,7 @@
                   <%= f.submit "変更" %>
                 <% end %></td>
             <td><%= cart_item.subtotal %></td>
-            <td><%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
+            <td><%= link_to '削除', cart_item_path(cart_item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
           </tr>
           <% end %>
         </tbody>
