@@ -18,6 +18,7 @@ class Admins::GenresController < ApplicationController
   
   def index
     @genres = Genre.all
+    @genre = Genre.new
   end
   
   def edit
@@ -30,17 +31,27 @@ class Admins::GenresController < ApplicationController
       flash[:notice] = "情報更新に成功しました"
       redirect_to admins_genres_path
     else
+      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
-    
+    @genre = Genre.find(params[:id])
+    @genre.destroy
+    redirect_to admins_genres_path, alert: "投稿を削除しました"
   end
   
   private
   
   def genre_params
     params.require(:genre).permit(:name)
+  end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
   end
 end

@@ -25,4 +25,11 @@ class Admins::ProducersController < ApplicationController
   def producer_params
     params.require(:producer).permit(:first_name, :last_name, :email, :postal_code, :address, :telephone_number, :email, :is_active)
   end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
 end

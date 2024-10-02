@@ -29,4 +29,11 @@ class Admins::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:consumer_id, :postal_code, :address, :address, :name, :total_payment, :shipping_cost, :payment_method, :status)
   end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
 end

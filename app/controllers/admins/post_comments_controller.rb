@@ -13,4 +13,12 @@ class Admins::PostCommentsController < ApplicationController
   def post_comment_params
     params.require(:post_comment).permit(:content)
   end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
 end
+

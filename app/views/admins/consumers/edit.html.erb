@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-lg-6 offset-lg-3">
-    <%= form_with model: @consumer do |f| %>
+    <%= form_with model: [:admins, @consumer] do |f| %>
       <div class="mb-2 row">
         <%= f.label :is_status, "会員ステータス", class: "col-sm-4 col-form-label font-weight-bold" %>
         <div class="col-sm-8">
@@ -62,7 +62,10 @@
     <% end %>
     
     <div class="mt-3">
-      <%= link_to "会員情報画面に戻る", admins_orders_path, class: "btn btn-primary" %>
+      <%= link_to "注文履歴一覧を見る", admins_orders_path, class: "btn btn-primary" %>
+    </div>
+    <div class="mt-3">
+      <%= link_to "ユーザー一覧に戻る", admins_dashboards_path, class: "btn btn-outline-secondary" %>
     </div>
   </div>
 </div>

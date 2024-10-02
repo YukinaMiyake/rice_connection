@@ -13,15 +13,23 @@ class Admins::ConsumersController < ApplicationController
   def update
     @consumer = Consumer.find(params[:id])
     if @consumer.update(consumer_params)
+      flash[:notice] = "情報を更新しました"
       admins_consumer_path(@consumer)
     else
-      flash[:notice]="項目を正しく記入してください"
+      flash[:alert]="更新に失敗しました"
       render 'edit'
     end
   end
   
   private
   def consumer_params
-    params.require(:producer).permit(:first_name, :last_name, :email, :postal_code, :address, :telephone_number, :email, :is_active)
+    params.require(:consumer).permit(:first_name, :last_name, :email, :postal_code, :address, :telephone_number, :email, :is_active)
+  end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
   end
 end

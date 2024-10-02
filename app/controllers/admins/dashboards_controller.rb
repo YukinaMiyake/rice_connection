@@ -32,4 +32,11 @@ class Admins::DashboardsController < ApplicationController
       @consumers = @consumers.where(is_active: params[:consumer_status])
     end
   end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
 end

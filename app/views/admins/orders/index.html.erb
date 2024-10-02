@@ -2,7 +2,7 @@
 <%= form_with url: admins_orders_path, method: :get do |f| %>
   <div class="row">
     <div class="col-md-4">
-      <%= f.search_field :keyword, value: params[:keyword], placeholder: "-- 名前で検索 --", class: "form-control" %>
+      <%= f.search_field :keyword, value: params[:keyword], placeholder: "-- 名前またはIDで検索 --", class: "form-control" %>
     </div>
     <div class="col-md-2 mb-2">
       <%= f.submit "検索", class: "btn btn-outline-secondary btn-block mb-3" %>

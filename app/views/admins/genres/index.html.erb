@@ -4,13 +4,13 @@
     <p class="font-weight-bold text-center">ジャンル名</p>
   </div>
   <div class="col-md-4">
-    <%= form_with model: @genre do |f| %>
+    <%= form_with model: @genre, url: admins_genres_path do |f| %>
       <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="col-md-2">
-    <%= f.submit "新規登録", class: "btn btn-info" %>
+      <%= f.submit "新規登録", class: "btn btn-info" %>
   </div>
-  <% end %>
+    <% end %>
 </div>
 <div class="row mt-5">
   <div class="col-md-5 offset-md-1">
@@ -26,7 +26,7 @@
         <tr>
           <td><%= genre.name %></td>
           <td><%= link_to "編集", edit_admins_genre_path(genre), class: "btn btn-success" %>
-              <%= link_to "削除", admins_genre_path(genre), class: "btn btn-danger" %></td>
+              <%= link_to "削除", admins_genre_path(genre.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
         </tr>
         <% end %>
       </tbody>

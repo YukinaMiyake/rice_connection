@@ -1,7 +1,8 @@
 <h3>ジャンル編集</h3>
+<%= render 'layouts/error_messages', model: @genre %>
 <div class="row mt-5">
   <div class="col-md-2 offset-md-1">
-    <%= form_with model: @genre, url: admins_genre_path(@genre) do |f| %>
+    <%= form_with model: @genre, url: admins_genre_path(@genre), method: :patch do |f| %>
       <%= f.label :name, "ジャンル名", class: "font-weight-bold" %>
     </div>
     <div class="col-md-5">
@@ -13,5 +14,5 @@
     <% end %>
 </div>
 <div class="row mt-5 ml-5">
-  <%= link_to "ジャンル一覧に戻る", admins_genres_path, class: "btn btn-primary" %>
+  <%= link_to "ジャンル一覧に戻る", admins_genres_path, class: "btn btn-outline-secondary" %>
 </div>

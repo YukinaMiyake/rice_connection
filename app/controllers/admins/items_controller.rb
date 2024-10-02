@@ -21,6 +21,7 @@ class Admins::ItemsController < ApplicationController
       flash[:notice] = "情報更新に成功しました"
       redirect_to admins_item_path(@item.id)
     else
+      flash.now[:alert] = "更新に失敗しました"
       render :edit
     end
   end
@@ -28,5 +29,12 @@ class Admins::ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :image, :genre_id, :introduction, :price, :stock)
+  end
+  
+  def authenticate_admin!
+    unless admin_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
   end
 end
