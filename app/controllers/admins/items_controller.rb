@@ -26,6 +26,12 @@ class Admins::ItemsController < ApplicationController
     end
   end
   
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to admins_items_path, alert: "投稿を削除しました"
+  end
+  
   private
   def item_params
     params.require(:item).permit(:name, :image, :genre_id, :introduction, :price, :stock)
