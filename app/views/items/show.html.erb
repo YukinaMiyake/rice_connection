@@ -1,4 +1,5 @@
 <h1>商品詳細</h1>
+<%= render 'layouts/error_messages', model: @cart_item %>
   <div class="row">
     <div class="col-md-5">
       <p><%= image_tag @item.get_image(400,300), size: "400x300" %></p>
@@ -57,18 +58,18 @@
     </div>
     <div class="row">
       <div class="col-md-5 mt-4 mb-2">
-    <% unless producer_signed_in? %>
-      <% if @item.stock > 0 %>
-        <%= form_with model: @cart_item do |f| %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.select :amount, *[1..5], { include_blank: "--個数を選択--" }, { class: "form-control" } %>
-          
-      </div>
-    </div>
-          <%= f.submit "カートへ入れる", class: "btn btn-primary ml-3 my-3" %>
+      <% unless producer_signed_in? %>
+        <% if @item.stock > 0 %>
+          <%= form_with model: @cart_item do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.select :amount, *[1..5], { include_blank: "--個数を選択--" }, { class: "form-control" } %>
+            <%= f.submit "カートへ入れる", class: "btn btn-primary ml-3 my-3" %>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+      </div>
+    </div>
+         
     <% if @item.producer == current_producer %>
   <p><%= link_to "編集", edit_item_path(@item.id), data: { turbolinks: false }, class: "btn btn-sm btn-success mb-3" %>
      <%= link_to "削除", item_path(@item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger mb-3" %>
