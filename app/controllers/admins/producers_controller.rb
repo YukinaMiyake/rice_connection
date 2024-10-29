@@ -14,10 +14,11 @@ class Admins::ProducersController < ApplicationController
   def update
     @producer = Producer.find(params[:id])
     if @producer.update(producer_params)
-      admins_producer_path(@producer)
+      flash[:notice] = "情報を更新しました"
+      redirect_to admins_producer_path(@producer)
     else
       flash[:notice]="項目を正しく記入してください"
-      render 'edit'
+      render :edit
     end
   end
   

@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col-lg-6 offset-lg-3">
-    <%= form_with model: @producer do |f| %>
+    <%= form_with model: [:admins, @producer], method: :patch do |f| %>
       <div class="mb-2 row">
         <%= f.label :is_status, "会員ステータス", class: "col-sm-4 col-form-label font-weight-bold" %>
         <div class="col-sm-8">

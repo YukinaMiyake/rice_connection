@@ -12,7 +12,8 @@ class Admins::GenresController < ApplicationController
       flash[:notice] = "登録に成功しました"
       redirect_to admins_genres_path
     else
-      render :new
+      @genres = Genre.all
+      render :index
     end
   end
   

@@ -14,10 +14,10 @@ class Admins::ConsumersController < ApplicationController
     @consumer = Consumer.find(params[:id])
     if @consumer.update(consumer_params)
       flash[:notice] = "情報を更新しました"
-      admins_consumer_path(@consumer)
+      redirect_to admins_consumer_path(@consumer)
     else
       flash[:alert]="更新に失敗しました"
-      render 'edit'
+      render :edit
     end
   end
   
