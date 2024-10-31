@@ -1,5 +1,4 @@
 <h1>商品詳細</h1>
-<%= render 'layouts/error_messages', model: @cart_item %>
   <div class="row">
     <div class="col-md-5">
       <p><%= image_tag @item.get_image(400,300), size: "400x300" %></p>
@@ -43,7 +42,7 @@
           <p class="font-weight-bold">商品価格(税抜)</p></p>
         </div>
         <div class="col-md-7">
-          <%= @item.price %>
+          <%= number_with_delimiter(@item.price) %>
         </div>
       </div>
     
@@ -61,8 +60,9 @@
       <% unless producer_signed_in? %>
         <% if @item.stock > 0 %>
           <%= form_with model: @cart_item do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.select :amount, *[1..5], { include_blank: "--個数を選択--" }, { class: "form-control" } %>
+            <%= f.select :amount, *[1..10], { include_blank: "--個数を選択--" }, { class: "form-control" } %>
             <%= f.submit "カートへ入れる", class: "btn btn-primary ml-3 my-3" %>
           <% end %>
         <% end %>

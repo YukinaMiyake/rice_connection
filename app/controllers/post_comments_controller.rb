@@ -1,13 +1,15 @@
 class PostCommentsController < ApplicationController
   def create
-    post = Post.find(params[:post_id])
-    comment = PostComment.new(post_comment_params)
-    comment.consumer_id = current_consumer.id
-    comment.post_id = post.id
-    if comment.save
-      redirect_to post_path(post.id)
+    @post = Post.find(params[:post_id])
+    @post_comment = PostComment.new(post_comment_params)
+    @post_comment.consumer_id = current_consumer.id
+    @post_comment.post_id = @post.id
+    if @post_comment.save
+      redirect_to post_path(@post.id)
     else
-      flash[:alert] = "コメントを入力してください"
+      @producer = @post.producer
+      @item = @post.item
+      render 'posts/show'
     end
   end
   

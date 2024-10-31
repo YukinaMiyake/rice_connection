@@ -22,13 +22,12 @@
           <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= image_tag cart_item.item.get_image(200,130), size: "200x130" %><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.with_tax_price %></td>
+            <td><%= number_with_delimiter(cart_item.item.with_tax_price) %></td>
             <td><%= form_with model: cart_item, method: :patch do |f| %>
-                  <%= f.select :amount, options_for_select(1..5, cart_item.amount) %>
-                  
+                  <%= f.select :amount, options_for_select((1..(cart_item.amount.to_i)+3).to_a, cart_item.amount) %>
                   <%= f.submit "変更" %>
                 <% end %></td>
-            <td><%= cart_item.subtotal %></td>
+            <td><%= number_with_delimiter(cart_item.subtotal) %></td>
             <td><%= link_to '削除', cart_item_path(cart_item.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %></td>
           </tr>
           <% end %>
@@ -38,7 +37,7 @@
         <tbody>
           <tr>
             <th class="table-secondary">合計金額</th>
-        　   <td><%= @cart_items.total %></td>
+        　   <td><%= number_with_delimiter(@cart_items.total) %></td>
         　</tr>
         </tbody>
       </table>

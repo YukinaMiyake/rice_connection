@@ -26,7 +26,7 @@ ja:
       genre:
         name: ジャンル名
       cart_item:
-        amount: 数量
+        amount: 個数
       order:
         postal_code: 郵便番号
         address: 住所

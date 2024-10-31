@@ -1,4 +1,6 @@
 class Consumer::OrdersController < ApplicationController
+  before_action :authenticate_consumer!
+  
   def new
     @order = Order.new
     @addresses = Address.all
@@ -66,6 +68,9 @@ class Consumer::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    unless @order.consumer == current_consumer
+      redirect_to consumer_path(current_consumer)
+    end
     @order_details = @order.order_details
   end
   
@@ -81,4 +86,12 @@ class Consumer::OrdersController < ApplicationController
       redirect_to cart_items_path
     end
   end
+  
+  def authenticate_consumer!
+    unless consumer_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
+  end
+  
 end

@@ -2,9 +2,11 @@
   <%= render 'layouts/error_messages', model: f.object %>
   <div class="mb-2">
     <%= f.label :image, "商品画像" %>
-    <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "image" %>
+    <%= f.file_field :image, direct_upload: true, accept: "image/*", class: "form-control-file", id: "image" %>
+    <%= f.hidden_field :image, value: item.image.signed_id if item.image.attached? %>
     <%= image_tag item.get_image(140, 100), size: "140x100", id: "image-preview" %>
   </div>
+ 
   <div class="mb-2">
     <%= f.label :name, "商品名" %>
     <%= f.text_field :name, class: "form-control" %>
@@ -19,7 +21,7 @@
   </div>
   <div class="mb-2">
     <%= f.label :price, "商品価格" %>
-    <%= f.text_field :price, class: "form-control" %>
+    <%= f.text_field :price, class: "form-control", value: number_with_delimiter(@item.price) %>
   </div>
   <div class="mb-2">
     <%= f.label :stock, "在庫数" %>
