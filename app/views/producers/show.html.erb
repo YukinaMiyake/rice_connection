@@ -43,7 +43,7 @@
       <p>商品名:<%= link_to item.name, item_path(item.id) %></p>
       <p>ジャンル:<%= item.genre.name %></p>
       <p>商品説明文:<%= item.introduction %></p>
-      <p>商品価格（税抜):<%= item.price %></p>
+      <p>商品価格（税抜):<%= number_with_delimiter(item.price) %></p>
     </div>
     <% end %>
   </div>

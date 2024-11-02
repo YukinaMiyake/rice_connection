@@ -44,7 +44,7 @@
           <p class="font-weight-bold">商品価格(税抜)</p></p>
         </div>
         <div class="col-md-7">
-          <%= @item.price %>
+          <%= number_with_delimiter(@item.price) %>
         </div>
       </div>
 

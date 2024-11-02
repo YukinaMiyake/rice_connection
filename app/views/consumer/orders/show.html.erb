@@ -32,9 +32,9 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @order.order_details.total %></td>
-      <td><%= shipping_cost = Item.shipping_cost * @order_details.item_count %></td>
-      <td><%= @order.order_details.total + @order.shipping_cost %></td>
+      <td><%= number_with_delimiter(@order.order_details.total) %></td>
+      <td><%= number_with_delimiter(shipping_cost = Item.shipping_cost * @order_details.item_count) %></td>
+      <td><%= number_with_delimiter(@order.order_details.total + @order.shipping_cost) %></td>
     </tr>
   </tbody>
 </table>
@@ -53,12 +53,12 @@
     <% @order_details.each do |order_detail| %>
     <tr>
       <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.item.with_tax_price %></td>
+      <td><%= number_with_delimiter(order_detail.item.with_tax_price) %></td>
       <td>
         <%= order_detail.amount %>個
         
       </td>
-      <td><%= order_detail.subtotal %></td>
+      <td><%= number_with_delimiter(order_detail.subtotal) %></td>
     </tr>
     <% end %>
   </tbody>

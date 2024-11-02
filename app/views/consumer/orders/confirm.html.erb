@@ -21,9 +21,9 @@
         <tr>
           <td><%= image_tag cart_item.item.get_image(200,100), size: "200x100" %></td>
           <td><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.with_tax_price %></td>
+          <td><%= number_with_delimiter(cart_item.item.with_tax_price) %></td>
           <td><%= cart_item.amount %>個</td>
-          <td><%= cart_item.subtotal %></td>
+          <td><%= number_with_delimiter(cart_item.subtotal) %></td>
         </tr>
         <% end %>
       </tbody>
@@ -35,16 +35,16 @@
         <td>
           <%#= form_with model: @cart_item, method: :patch do |f| %>
               <%#= f.select :shipping_cost, options_for_select([800,1000], cart_item.shipping_cost) %>
-          <%= shipping_cost = Item.shipping_cost * @cart_items.item_count %>
+          <%= number_with_delimiter(shipping_cost = Item.shipping_cost * @cart_items.item_count) %>
         </td>
       </tr>
       <tr>
         <th style="background-color: #f5f5f5">商品合計</th>
-        <td><%= @cart_items.total %></td>
+        <td><%= number_with_delimiter(@cart_items.total) %></td>
       </tr>
       <tr>
         <th style="background-color: #f5f5f5">請求金額</th>
-        <td><%= @cart_items.total + shipping_cost %></td>
+        <td><%= number_with_delimiter(@cart_items.total + shipping_cost) %></td>
       </tr>
     </table>
     

@@ -28,15 +28,15 @@
     <table class="table table-borderd">
       <tr>
         <th style="background-color: #f5f5f5">商品合計</th>
-        <td><%= @order_details.total %></td>
+        <td><%= number_with_delimiter(@order_details.total) %></td>
       </tr>
       <tr>
         <th style="background-color: #f5f5f5">送料</th>
-        <td><%= shipping_cost = Item.shipping_cost * @order_details.item_count %></td>
+        <td><%= number_with_delimiter(shipping_cost = Item.shipping_cost * @order_details.item_count) %></td>
       </tr>
       <tr>
         <th style="background-color: #f5f5f5">ご請求金額</th>
-        <td><%= @order_details.total + shipping_cost %></td>
+        <td><%= number_with_delimiter(@order_details.total + shipping_cost) %></td>
       </tr>
     </table>
   </div>
@@ -61,7 +61,7 @@
         <td><%= order_detail.item.name %></td>
         <td><%= order_detail.item.with_tax_price %></td>
         <td><%= order_detail.amount %></td>
-        <td><%= order_detail.subtotal %></td>
+        <td><%= number_with_delimiter(order_detail.subtotal) %></td>
         <td>
           <% if order_detail.status != "発送済み" %>
             <%= form_with model: order_detail, url: producer_order_detail_path(order_detail) do |f| %>

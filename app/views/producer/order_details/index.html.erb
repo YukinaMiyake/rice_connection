@@ -25,7 +25,7 @@
       <td><%= order_detail.order.created_at.strftime('%Y/%m/%d') %></td>
       <td><%= order_detail.order.name %></td>
       <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.subtotal %></td>
+      <td><%= number_with_delimiter(order_detail.subtotal) %></td>
       <td><%= order_detail.status %></td>
       <td><%= link_to "詳細", producer_order_detail_path(order_detail), class: "btn btn-outline-primary" %></td>
       <td><%= link_to "注文全体を見る", producer_order_path(order_detail.order), class: "btn btn-outline-success" %></td>

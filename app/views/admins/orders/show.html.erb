@@ -38,11 +38,11 @@
     <tr>
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.item.producer.name %></td>
-      <td><%= order_detail.item.with_tax_price %></td>
+      <td><%= number_with_delimiter(order_detail.item.with_tax_price) %></td>
       <td><%= order_detail.amount %>個
       
       </td>
-      <td><%= order_detail.subtotal %></td>
+      <td><%= number_with_delimiter(order_detail.subtotal) %></td>
       <td><%= order_detail.status %></td>
     </tr>
     <% end %>
@@ -56,9 +56,9 @@
     <p class="font-weight-bold">請求合計金額</p>
   </div>
   <div class="col-lg-4 col-md-5 col-sm-6">
-    <p><%= @order.order_details.total %></p>
-    <p><%= @order.shipping_cost %></p>
-    <p><%= @order.order_details.total + @order.shipping_cost %></p>
+    <p><%= number_with_delimiter(@order.order_details.total) %></p>
+    <p><%= number_with_delimiter(@order.shipping_cost) %></p>
+    <p><%= number_with_delimiter(@order.order_details.total + @order.shipping_cost) %></p>
   </div>
 </div>
 <%= link_to "注文一覧へ戻る", admins_orders_path, class: "btn btn-outline-secondary mt-3" %>
