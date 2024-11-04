@@ -12,7 +12,7 @@
   </div>
   <div class="col-lg-4 col-md-5 col-sm-6">
     <p><%= @order.consumer.name %></p>
-    <p><%= @order.created_at.strftime('%Y/%m/%d') %></p>
+    <p><%= l @order.created_at, format: :long %></p>
     <p><%= @order.address %></p>
     <p><%= @order.payment_method %></p>
     <%= form_with model: @order, url: admins_order_path(@order.id) do |f| %>

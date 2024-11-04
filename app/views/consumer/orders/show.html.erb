@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= l @order.created_at, format: :long %></td>
       <td><%= @order.address %></td>
       <td><%= @order.payment_method_i18n %></td>
       <td><%= @order.status %></td>

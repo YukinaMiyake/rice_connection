@@ -7,7 +7,7 @@
     <table class="table table-borderd">
       <tr>
         <th style="background-color: #f5f5f5">注文日</th>
-        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= l @order.created_at, format: :long %></td>
       </tr>
       <tr>
         <th style="background-color: #f5f5f5">注文者</th>

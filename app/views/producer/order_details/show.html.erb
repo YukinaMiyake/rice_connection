@@ -5,8 +5,16 @@
   <table class="table table-borderd">
     <tbody>
       <tr>
+        <th style="background-color: #f5f5f5">注文日時</th>
+        <td><%= l @order_detail.created_at, format: :long %></td>
+      </tr>
+      <tr>
         <th style="background-color: #f5f5f5">商品</th>
         <td><%= @order_detail.item.name %></td>
+      </tr>
+      <tr>
+        <th style="background-color: #f5f5f5">生産者</th>
+        <td><%= @order_detail.item.producer.name %></td>
       </tr>
       <tr>
         <th style="background-color: #f5f5f5">単価(税込)</th>

@@ -22,7 +22,7 @@
     <% @order_details.each do |order_detail| %>
     <tr>
       <td><%= link_to order_detail.id, producer_order_detail_path(order_detail) %></td>
-      <td><%= order_detail.order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= l order_detail.order.created_at, format: :long %></td>
       <td><%= order_detail.order.name %></td>
       <td><%= order_detail.item.name %></td>
       <td><%= number_with_delimiter(order_detail.subtotal) %></td>

@@ -26,6 +26,7 @@
       <%= link_to post_path(post.id) do %>
      　  <%= image_tag post.get_image(200,180), size: "200x180" %>
       <% end %>
+      <p><%= l post.created_at, format: :long %></p>
       <p>タイトル:<%= link_to post.title, post_path(post.id) %></p>
       <p>本文:<%= post.body %></p>
       <p>商品名:<%= link_to post.item.name, item_path(post.item.id) %></p>

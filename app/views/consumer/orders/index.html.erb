@@ -18,7 +18,7 @@
       <tbody>
         <% @orders.each do |order| %>
         <tr>
-          <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= l order.created_at, format: :long %></td>
           <td><%= order.address %></td>
           <td><% order.order_details.each do |order_detail| %>
                 <%= order_detail.item.name %>

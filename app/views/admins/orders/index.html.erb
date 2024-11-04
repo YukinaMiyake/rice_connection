@@ -24,7 +24,7 @@
   <tbody>
     <% @orders.each do |order| %>
     <tr>
-      <td><%= link_to order.created_at.strftime('%Y/%m/%d'), admins_order_path(order.id) %></td>
+      <td><%= link_to l(order.created_at, format: :long), admins_order_path(order.id) %></td>
       <td><%= order.consumer.id %></td>
       <td><%= order.consumer.name %></td>
       <td><% amount = 0 %>
