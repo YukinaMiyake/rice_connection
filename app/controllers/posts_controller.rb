@@ -22,6 +22,7 @@ class PostsController < ApplicationController
   
   def index
     @posts = Post.all.joins(:producer)
+    #新着順に表示 orderメソッドは並び変え、descは降順
     @posts = Post.all.order(created_at: :desc)
     #if params[:keyword].present?
       #@posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%").or(

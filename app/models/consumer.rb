@@ -12,6 +12,7 @@ class Consumer < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :relationships, dependent: :destroy
   has_many :producers, through: :relationships
+  has_many :favorites, dependent: :destroy
   
   validates :last_name, presence: true
   validates :first_name, presence: true

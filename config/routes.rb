@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :producers, only: [:index, :show, :edit, :update]
     resources :consumers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:new, :create, :index, :edit, :update, :destroy]
+    resource :favorite, only: [:create, :destroy]
   end
   
 
