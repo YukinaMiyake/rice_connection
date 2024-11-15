@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     resources :producers, only: [:index, :show, :edit, :update]
     resources :consumers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:new, :create, :index, :edit, :update, :destroy]
-    resource :favorite, only: [:create, :destroy]
   end
   
 
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
   
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
   
   resources :addresses
