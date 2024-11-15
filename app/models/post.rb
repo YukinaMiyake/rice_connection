@@ -25,6 +25,10 @@ class Post < ApplicationRecord
     return Post.all unless search
     Post.where(['content LIKE(?) OR title LIKE(?)', "%#{search}", "%#{search}"])
   end
+  
+  def favorited_by?(consumer)
+    favosites.exists?(consumer_id: consumer.id)
+  end
 end
 
 # == Schema Information
