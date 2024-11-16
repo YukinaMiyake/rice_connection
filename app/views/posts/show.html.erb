@@ -15,9 +15,10 @@
         <td width="10%"><%= link_to @post.item.name, item_path(@item.id) %></td>
         <td width="10%"><%= l @post.created_at, format: :long %></td>
           <% if @post.producer == current_producer %>
-        <td width="15%"><%= link_to "編集", edit_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td> 
-        <td width="15%"><%= link_to "削除", post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
+        <td width="10%"><%= link_to "編集", edit_post_path(@post.id), data: { turbolinks: false }, class: "btn btn-sm btn-success" %></td> 
+        <td width="10%"><%= link_to "削除", post_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></td>
           <% end %>
+        <td width="10%"><%= render "favorites/btn", post: @post %></td>
       </tr>
     </tbody>
   </table>

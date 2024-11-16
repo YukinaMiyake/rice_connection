@@ -1,0 +1,13 @@
+<% if consumer_signed_in? %>
+  <% if post.favorited_by?(current_consumer) %>
+    <%= link_to post_favorites_path(post), method: :delete, style: "color: red;" do %>
+        <i class="fa-solid fa-heart" aria-hidden="true"></i>
+        <%= post.favorites.count %>
+    <% end %>
+  <% else %>
+    <%= link_to post_favorites_path(post), method: :post do %>
+      <i class="fa-regular fa-heart" aria-hidden="true"></i>
+      <%= post.favorites.count %>
+    <% end %>
+  <% end %>
+<% end %>
